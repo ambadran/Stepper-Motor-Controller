@@ -1,0 +1,37 @@
+-muwx
+-i build/Programming.hex
+-M
+-Y
+-S 0x70
+-X 0x2000
+-C 0xfe00
+-b HOME = 0x0000
+-b ISEG = 0x0000
+-b BSEG = 0x0000
+-k /usr/bin/../share/sdcc/lib/large
+-k /usr/share/sdcc/lib/large
+-l mcs51
+-l libsdcc
+-l libint
+-l liblong
+-l libfloat
+build/serial-console.rel
+build/advpwm-hal.rel
+build/timer-hal.rel
+build/gpio-hal.rel
+build/delay.rel
+build/fifo-buffer.rel
+build/i2c-hal.rel
+build/uart-hal.rel
+build/encoder.rel
+build/ssd1306.rel
+build/main.rel
+build/switch.rel
+build/stepper_driver.rel
+build/application.rel
+build/global_timer.rel
+build/buttons.rel
+build/display.rel
+build/crtxinit.rel
+
+-e

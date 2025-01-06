@@ -1,0 +1,1081 @@
+ASxxxx Linker V03.00 + NoICE + sdld,  page 1.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CABS                                00000000    00000000 =           0. bytes (ABS,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000000  l_CABS                          
+C:   00000000  l_GSINIT1                       
+C:   00000000  l_GSINIT5                       
+C:   00000000  l_IABS                          
+C:   00000000  l_PSEG                          
+C:   00000000  l_REG_BANK_1                    
+C:   00000000  l_REG_BANK_2                    
+C:   00000000  l_REG_BANK_3                    
+C:   00000000  l_RSEG                          
+C:   00000000  l_RSEG0                         
+C:   00000000  l_RSEG1                         
+C:   00000000  l_XABS                          
+C:   00000000  l__CODE                         
+C:   00000000  s_BSEG                          
+C:   00000000  s_CABS                          
+C:   00000000  s_DSEG                          
+C:   00000000  s_HOME                          
+C:   00000000  s_IABS                          
+C:   00000000  s_PSEG                          
+C:   00000000  s_REG_BANK_0                    
+C:   00000000  s_RSEG                          
+C:   00000000  s_RSEG0                         
+C:   00000000  s_RSEG1                         
+C:   00000000  s_XABS                          
+C:   00000000  s_XSEG                          
+C:   00000001  l_BIT_BANK                      
+C:   00000001  l_BSEG_BYTES                    
+C:   00000003  l_GSFINAL                       
+C:   00000003  l_GSINIT0                       
+C:   00000004  l_BSEG                          
+C:   00000004  l_OSEG                          
+C:   00000008  l_REG_BANK_0                    
+C:   00000008  s_REG_BANK_1                    
+C:   0000000A  l_GSINIT2                       
+C:   00000010  s_REG_BANK_2                    
+C:   00000018  s_REG_BANK_3                    
+C:   00000020  s_BSEG_BYTES                    
+C:   00000020  s__CODE                         
+C:   00000021  l_GSINIT3                       
+C:   00000021  s_BIT_BANK                      
+C:   0000002A  l_GSINIT4                       
+C:   00000030  l_ISEG                          
+C:   00000044  l_GSINIT                        
+C:   00000053  s_OSEG                          
+C:   00000057  s_ISEG                          
+C:   00000070  l_SSEG                          
+C:   00000080  l_DSEG                          
+C:   00000087  s_SSEG                          
+C:   000000A5  l_XINIT                         
+C:   000000A5  l_XISEG                         
+ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CABS                                00000000    00000000 =           0. bytes (ABS,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000000E3  l_HOME                          
+C:   000000E3  s_GSINIT0                       
+C:   000000E6  s_GSINIT1                       
+C:   000000E6  s_GSINIT2                       
+C:   000000F0  s_GSINIT3                       
+C:   00000100  l_IRAM                          
+C:   00000111  s_GSINIT4                       
+C:   0000013B  s_GSINIT                        
+C:   0000013B  s_GSINIT5                       
+C:   0000017F  s_GSFINAL                       
+C:   00000182  s_CSEG                          
+C:   00000631  l_XSEG                          
+C:   00000631  s_XISEG                         
+C:   0000232D  l_CONST                         
+C:   000056DC  l_CSEG                          
+C:   0000585E  s_CONST                         
+C:   00007B8B  s_XINIT                         
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000000  .__.ABS.                           _startup
+     00000081  _SP                                display
+     00000082  _DPL                               display
+     00000083  _DPH                               display
+     00000084  _S4CON                             display
+     00000085  _S4BUF                             display
+     00000087  _PCON                              display
+     00000088  _INT0TR                            display
+     00000088  _TCON                              display
+     00000089  _TMOD                              display
+     0000008A  _INT1TR                            display
+     0000008A  _T0L                               display
+     0000008B  _T1L                               display
+     0000008C  _T0H                               display
+     0000008C  _T0RUN                             display
+     0000008D  _T1H                               display
+     0000008E  _AUXR                              display
+     0000008E  _T1RUN                             display
+     0000008F  _INT_CLKO                          display
+     00000090  _P1                                display
+     00000090  _P1_0                              display
+     00000091  _P1M1                              display
+     00000091  _P1_1                              display
+     00000092  _P1M0                              display
+     00000092  _P1_2                              display
+     00000093  _P1_3                              display
+     00000094  _P1_4                              display
+     00000095  _P1_5                              display
+     00000095  _P2M1                              display
+     00000096  _P1_6                              display
+     00000096  _P2M0                              display
+     00000097  _P1_7                              display
+     00000098  _S1CON                             display
+     00000099  _S1BUF                             display
+     0000009A  _S2CON                             display
+     0000009B  _S2BUF                             display
+     0000009D  _IRCBAND                           display
+     0000009E  _LIRTRIM                           display
+     0000009F  _IRTRIM                            display
+     0000009F  _S1SM0_FE                          display
+     000000A0  _P2                                display
+     000000A0  _P2_0                              display
+     000000A0  __XPAGE                            
+     000000A1  _BUS_SPEED                         display
+     000000A1  _P2_1                              display
+     000000A2  _P2_2                              display
+     000000A2  _P_SW1                             display
+     000000A3  _P2_3                              display
+     000000A4  _P2_4                              display
+     000000A5  _P2_5                              display
+ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000A6  _P2_6                              display
+     000000A7  _P2_7                              display
+     000000A8  _IE1                               display
+     000000A8  _INT0IE                            display
+     000000A9  _SADDR                             display
+     000000A9  _T0IE                              display
+     000000AA  _INT1IE                            display
+     000000AA  _WKTCL                             display
+     000000AB  _T1IE                              display
+     000000AB  _WKTCH                             display
+     000000AC  _S3CON                             display
+     000000AD  _S3BUF                             display
+     000000AE  _TA                                display
+     000000AF  _EA                                display
+     000000AF  _IE2                               display
+     000000B0  _P3                                display
+     000000B0  _P3_0                              display
+     000000B1  _P3M1                              display
+     000000B1  _P3_1                              display
+     000000B2  _P3M0                              display
+     000000B2  _P3_2                              display
+     000000B3  _P3_3                              display
+     000000B4  _P3_4                              display
+     000000B5  _IP2L                              display
+     000000B5  _P3_5                              display
+     000000B6  _IP2H                              display
+     000000B6  _P3_6                              display
+     000000B7  _IP1H                              display
+     000000B7  _P3_7                              display
+     000000B8  _IP1L                              display
+     000000B9  _SADEN                             display
+     000000BA  _P_SW2                             display
+     000000BC  _ADC_CONTR                         display
+     000000BD  _ADC_RESH                          display
+     000000BE  _ADC_RESL                          display
+     000000C1  _WDT_CONTR                         display
+     000000C2  _IAP_DATA                          display
+     000000C3  _IAP_ADDRH                         display
+     000000C4  _IAP_ADDRL                         display
+     000000C5  _IAP_CMD                           display
+     000000C6  _IAP_TRIG                          display
+     000000C7  _IAP_CONTR                         display
+     000000C8  _P5                                display
+     000000C8  _P5_0                              display
+     000000C9  _P5M1                              display
+     000000C9  _P5_1                              display
+     000000CA  _P5M0                              display
+     000000CA  _P5_2                              display
+     000000CB  _P5_3                              display
+     000000CC  _P5_4                              display
+     000000CD  _P5_5                              display
+ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     000000CD  _SPSTAT                            display
+     000000CE  _SPCTL                             display
+     000000CF  _SPDAT                             display
+     000000D0  _P                                 display
+     000000D0  _PSW                               display
+     000000D1  _F1                                display
+     000000D1  _T4T3M                             display
+     000000D2  _OV                                display
+     000000D2  _T4H                               display
+     000000D3  _RS0                               display
+     000000D3  _T4L                               display
+     000000D4  _RS1                               display
+     000000D4  _T3H                               display
+     000000D5  _F0                                display
+     000000D5  _T3L                               display
+     000000D6  _AC                                display
+     000000D6  _T2H                               display
+     000000D7  _CY                                display
+     000000D7  _T2L                               display
+     000000DC  _USBCLK                            display
+     000000DE  _ADCCFG                            display
+     000000DF  _IP3L                              display
+     000000E0  _ACC                               display
+     000000E3  _DPS                               display
+     000000E4  _DPL1                              display
+     000000E5  _DPH1                              display
+     000000E6  _CMPCR1                            display
+     000000E7  _CMPCR2                            display
+     000000EC  _USBDAT                            display
+     000000EE  _IP3H                              display
+     000000EF  _AUXINTIF                          display
+     000000F0  _B                                 display
+     000000F4  _USBCON                            display
+     000000F5  _B_5                               _gptrget
+     000000F5  _IAP_TPS                           display
+     000000F6  _B_6                               _gptrget
+     000000F7  _B_7                               _gptrget
+     000000FA  _DMA_ADC_AMT                       display
+     000000FC  _USBADR                            display
+     000000FF  _RSTCFG                            display
+     00008382  _DP                                display
+     00008C8A  _T0                                display
+     00008D8B  _T1                                display
+     0000ABAA  _WKTC                              display
+     0000BDBE  _ADC_RES                           display
+     0000C3C4  _IAP_ADDR                          display
+     0000D2D3  _T4                                display
+     0000D4D5  _T3                                display
+     0000D6D7  _T2                                display
+     0000FA00  _DMA_M2M_CFG                       display
+     0000FA01  _DMA_M2M_CR                        display
+ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000FA02  _DMA_M2M_STA                       display
+     0000FA03  _DMA_M2M_AMT                       display
+     0000FA04  _DMA_M2M_DONE                      display
+     0000FA05  _DMA_M2M_TXAH                      display
+     0000FA06  _DMA_M2M_TXAL                      display
+     0000FA07  _DMA_M2M_RXAH                      display
+     0000FA08  _DMA_M2M_RXAL                      display
+     0000FA10  _DMA_ADC_CFG                       display
+     0000FA11  _DMA_ADC_CR                        display
+     0000FA12  _DMA_ADC_STA                       display
+     0000FA17  _DMA_ADC_RXAH                      display
+     0000FA18  _DMA_ADC_RXAL                      display
+     0000FA19  _DMA_ADC_CFG2                      display
+     0000FA1A  _DMA_ADC_CHSW0                     display
+     0000FA1B  _DMA_ADC_CHSW1                     display
+     0000FA20  _DMA_SPI_CFG                       display
+     0000FA21  _DMA_SPI_CR                        display
+     0000FA22  _DMA_SPI_STA                       display
+     0000FA23  _DMA_SPI_AMT                       display
+     0000FA24  _DMA_SPI_DONE                      display
+     0000FA25  _DMA_SPI_TXAH                      display
+     0000FA26  _DMA_SPI_TXAL                      display
+     0000FA27  _DMA_SPI_RXAH                      display
+     0000FA28  _DMA_SPI_RXAL                      display
+     0000FA29  _DMA_SPI_CFG2                      display
+     0000FA30  _DMA_UR1T_CFG                      display
+     0000FA30  _DMA_UR2T_CFG                      display
+     0000FA30  _DMA_UR3T_CFG                      display
+     0000FA30  _DMA_UR4T_CFG                      display
+     0000FA31  _DMA_UR1T_CR                       display
+     0000FA31  _DMA_UR2T_CR                       display
+     0000FA31  _DMA_UR3T_CR                       display
+     0000FA31  _DMA_UR4T_CR                       display
+     0000FA32  _DMA_UR1T_STA                      display
+     0000FA32  _DMA_UR2T_STA                      display
+     0000FA32  _DMA_UR3T_STA                      display
+     0000FA32  _DMA_UR4T_STA                      display
+     0000FA33  _DMA_UR2T_AMT                      display
+     0000FA33  _DMA_UR3T_AMT                      display
+     0000FA33  _DMA_UR4T_AMT                      display
+     0000FA33  _DMA_URTX_AMT                      display
+     0000FA34  _DMA_UR1T_DONE                     display
+     0000FA34  _DMA_UR2T_DONE                     display
+     0000FA34  _DMA_UR3T_DONE                     display
+     0000FA34  _DMA_UR4T_DONE                     display
+     0000FA35  _DMA_UR1T_TXAH                     display
+     0000FA35  _DMA_UR2T_TXAH                     display
+     0000FA35  _DMA_UR3T_TXAH                     display
+     0000FA35  _DMA_UR4T_TXAH                     display
+     0000FA36  _DMA_UR1T_TXAL                     display
+     0000FA36  _DMA_UR2T_TXAL                     display
+ASxxxx Linker V03.00 + NoICE + sdld,  page 7.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000FA36  _DMA_UR3T_TXAL                     display
+     0000FA36  _DMA_UR4T_TXAL                     display
+     0000FA38  _DMA_UR1R_CFG                      display
+     0000FA38  _DMA_UR2R_CFG                      display
+     0000FA38  _DMA_UR3R_CFG                      display
+     0000FA38  _DMA_UR4R_CFG                      display
+     0000FA39  _DMA_UR1R_CR                       display
+     0000FA39  _DMA_UR2R_CR                       display
+     0000FA39  _DMA_UR3R_CR                       display
+     0000FA39  _DMA_UR4R_CR                       display
+     0000FA3A  _DMA_UR1R_STA                      display
+     0000FA3A  _DMA_UR2R_STA                      display
+     0000FA3A  _DMA_UR3R_STA                      display
+     0000FA3A  _DMA_UR4R_STA                      display
+     0000FA3B  _DMA_UR1R_AMT                      display
+     0000FA3B  _DMA_UR2R_AMT                      display
+     0000FA3B  _DMA_UR3R_AMT                      display
+     0000FA3B  _DMA_UR4R_AMT                      display
+     0000FA3C  _DMA_UR1R_DONE                     display
+     0000FA3C  _DMA_UR2R_DONE                     display
+     0000FA3C  _DMA_UR3R_DONE                     display
+     0000FA3C  _DMA_UR4R_DONE                     display
+     0000FA3D  _DMA_UR1R_TXAH                     display
+     0000FA3D  _DMA_UR2R_TXAH                     display
+     0000FA3D  _DMA_UR3R_TXAH                     display
+     0000FA3D  _DMA_UR4R_TXAH                     display
+     0000FA3E  _DMA_UR1R_TXAL                     display
+     0000FA3E  _DMA_UR2R_TXAL                     display
+     0000FA3E  _DMA_UR3R_TXAL                     display
+     0000FA3E  _DMA_UR4R_TXAL                     display
+     0000FA70  _DMA_LCM_CFG                       display
+     0000FA71  _DMA_LCM_CR                        display
+     0000FA72  _DMA_LCM_STA                       display
+     0000FA73  _DMA_LCM_AMT                       display
+     0000FA74  _DMA_LCM_DONE                      display
+     0000FA75  _DMA_LCM_TXAH                      display
+     0000FA76  _DMA_LCM_TXAL                      display
+     0000FA77  _DMA_LCM_RXAH                      display
+     0000FA78  _DMA_LCM_RXAL                      display
+     0000FCF0  _MD3                               display
+     0000FCF1  _MD2                               display
+     0000FCF2  _MD1                               display
+     0000FCF3  _MD0                               display
+     0000FCF4  _MD5                               display
+     0000FCF5  _MD4                               display
+     0000FCF6  _ARCON                             display
+     0000FCF7  _OPCON                             display
+     0000FD01  _P1INTE                            display
+     0000FD02  _P2INTE                            display
+     0000FD03  _P3INTE                            display
+     0000FD05  _P5INTE                            display
+ASxxxx Linker V03.00 + NoICE + sdld,  page 8.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000FD11  _P1INTF                            display
+     0000FD12  _P2INTF                            display
+     0000FD13  _P3INTF                            display
+     0000FD15  _P5INTF                            display
+     0000FD21  _P1IM0                             display
+     0000FD22  _P2IM0                             display
+     0000FD23  _P3IM0                             display
+     0000FD25  _P5IM0                             display
+     0000FD31  _P1IM1                             display
+     0000FD32  _P2IM1                             display
+     0000FD33  _P3IM1                             display
+     0000FD35  _P5IM1                             display
+     0000FD41  _P1WKUE                            display
+     0000FD42  _P2WKUE                            display
+     0000FD43  _P3WKUE                            display
+     0000FD45  _P5WKUE                            display
+     0000FD60  _PINIPL                            display
+     0000FD61  _PINIPH                            display
+     0000FE00  _CKSEL                             display
+     0000FE01  _CLKDIV                            display
+     0000FE02  _HIRCCR                            display
+     0000FE03  _XOSCCR                            display
+     0000FE04  _IRC32KCR                          display
+     0000FE05  _MCLKOCR                           display
+     0000FE06  _IRCDB                             display
+     0000FE07  _IRC48MCR                          display
+     0000FE08  _SPFUNC                            display
+     0000FE09  _RSTFLAG                           display
+     0000FE11  _P1PU                              display
+     0000FE12  _P2PU                              display
+     0000FE13  _P3PU                              display
+     0000FE15  _P5PU                              display
+     0000FE19  _P1NCS                             display
+     0000FE1A  _P2NCS                             display
+     0000FE1B  _P3NCS                             display
+     0000FE1D  _P5NCS                             display
+     0000FE21  _P1SR                              display
+     0000FE22  _P2SR                              display
+     0000FE23  _P3SR                              display
+     0000FE25  _P5SR                              display
+     0000FE29  _P1DR                              display
+     0000FE2A  _P2DR                              display
+     0000FE2B  _P3DR                              display
+     0000FE2D  _P5DR                              display
+     0000FE31  _P1IE                              display
+     0000FE32  _P2IE                              display
+     0000FE33  _P3IE                              display
+     0000FE35  _P5IE                              display
+     0000FE50  _LCMCFG                            display
+     0000FE51  _LCMCFG2                           display
+     0000FE52  _LCMCR                             display
+ASxxxx Linker V03.00 + NoICE + sdld,  page 9.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000FE53  _LCMSTA                            display
+     0000FE54  _LCMIDDAT                          display
+     0000FE54  _LCMIDDATL                         display
+     0000FE55  _LCMIDDATH                         display
+     0000FE60  _RTCCR                             display
+     0000FE61  _RTCCFG                            display
+     0000FE62  _RTCIEN                            display
+     0000FE63  _RTCIF                             display
+     0000FE64  _ALAHOUR                           display
+     0000FE65  _ALAMIN                            display
+     0000FE66  _ALASEC                            display
+     0000FE67  _ALASSEC                           display
+     0000FE68  _INIYEAR                           display
+     0000FE69  _INIMONTH                          display
+     0000FE6A  _INIDAY                            display
+     0000FE6B  _INIHOUR                           display
+     0000FE6C  _INIMIN                            display
+     0000FE6D  _INISEC                            display
+     0000FE6E  _INISSEC                           display
+     0000FE70  _YEAR                              display
+     0000FE71  _MONTH                             display
+     0000FE72  _DAY                               display
+     0000FE73  _HOUR                              display
+     0000FE74  _MIN                               display
+     0000FE75  _SEC                               display
+     0000FE76  _SSEC                              display
+     0000FE80  _I2CCFG                            display
+     0000FE81  _I2CMSCR                           display
+     0000FE82  _I2CMSST                           display
+     0000FE83  _I2CSLCR                           display
+     0000FE84  _I2CSLST                           display
+     0000FE85  _I2CSLADR                          display
+     0000FE86  _I2CTXD                            display
+     0000FE87  _I2CRXD                            display
+     0000FE88  _I2CMSAUX                          display
+     0000FEA2  _TM2PS                             display
+     0000FEA3  _TM3PS                             display
+     0000FEA4  _TM4PS                             display
+     0000FEA8  _ADCTIM                            display
+     0000FEAD  _ADCEXCFG                          display
+     0000FEAE  _CMPEXCFG                          display
+     0000FEB0  _PWMA_ETRPS                        display
+     0000FEB1  _PWMA_ENO                          display
+     0000FEB2  _PWMA_PS                           display
+     0000FEB3  _PWMA_IOAUX                        display
+     0000FEB4  _PWMB_ETRPS                        display
+     0000FEB5  _PWMB_ENO                          display
+     0000FEB6  _PWMB_PS                           display
+     0000FEB7  _PWMB_IOAUX                        display
+     0000FEC0  _PWMA_CR1                          display
+     0000FEC1  _PWMA_CR2                          display
+ASxxxx Linker V03.00 + NoICE + sdld,  page 10.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000FEC2  _PWMA_SMCR                         display
+     0000FEC3  _PWMA_ETR                          display
+     0000FEC4  _PWMA_IER                          display
+     0000FEC5  _PWMA_SR1                          display
+     0000FEC6  _PWMA_SR2                          display
+     0000FEC7  _PWMA_EGR                          display
+     0000FEC8  _PWMA_CCMR1                        display
+     0000FEC9  _PWMA_CCMR2                        display
+     0000FECA  _PWMA_CCMR3                        display
+     0000FECB  _PWMA_CCMR4                        display
+     0000FECC  _PWMA_CCER1                        display
+     0000FECD  _PWMA_CCER2                        display
+     0000FECE  _PWMA_CNTRH                        display
+     0000FECF  _PWMA_CNTRL                        display
+     0000FED0  _PWMA_PSCRH                        display
+     0000FED1  _PWMA_PSCRL                        display
+     0000FED2  _PWMA_ARRH                         display
+     0000FED3  _PWMA_ARRL                         display
+     0000FED4  _PWMA_RCR                          display
+     0000FED5  _PWMA_CCR1H                        display
+     0000FED6  _PWMA_CCR1L                        display
+     0000FED7  _PWMA_CCR2H                        display
+     0000FED8  _PWMA_CCR2L                        display
+     0000FED9  _PWMA_CCR3H                        display
+     0000FEDA  _PWMA_CCR3L                        display
+     0000FEDB  _PWMA_CCR4H                        display
+     0000FEDC  _PWMA_CCR4L                        display
+     0000FEDD  _PWMA_BKR                          display
+     0000FEDE  _PWMA_DTR                          display
+     0000FEDF  _PWMA_OISR                         display
+     0000FEE0  _PWMB_CR1                          display
+     0000FEE1  _PWMB_CR2                          display
+     0000FEE2  _PWMB_SMCR                         display
+     0000FEE3  _PWMB_ETR                          display
+     0000FEE4  _PWMB_IER                          display
+     0000FEE5  _PWMB_SR1                          display
+     0000FEE6  _PWMB_SR2                          display
+     0000FEE7  _PWMB_EGR                          display
+     0000FEE8  _PWMB_CCMR1                        display
+     0000FEE9  _PWMB_CCMR2                        display
+     0000FEEA  _PWMB_CCMR3                        display
+     0000FEEB  _PWMB_CCMR4                        display
+     0000FEEC  _PWMB_CCER1                        display
+     0000FEED  _PWMB_CCER2                        display
+     0000FEEE  _PWMB_CNTRH                        display
+     0000FEEF  _PWMB_CNTRL                        display
+     0000FEF0  _PWMB_PSCRH                        display
+     0000FEF1  _PWMB_PSCRL                        display
+     0000FEF2  _PWMB_ARRH                         display
+     0000FEF3  _PWMB_ARRL                         display
+     0000FEF4  _PWMB_RCR                          display
+ASxxxx Linker V03.00 + NoICE + sdld,  page 11.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000FEF5  _PWMB_CCR1H                        display
+     0000FEF6  _PWMB_CCR1L                        display
+     0000FEF7  _PWMB_CCR2H                        display
+     0000FEF8  _PWMB_CCR2L                        display
+     0000FEF9  _PWMB_CCR3H                        display
+     0000FEFA  _PWMB_CCR3L                        display
+     0000FEFB  _PWMB_CCR4H                        display
+     0000FEFC  _PWMB_CCR4L                        display
+     0000FEFD  _PWMB_BKR                          display
+     0000FEFE  _PWMB_DTR                          display
+     0000FEFF  _PWMB_OISR                         display
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 12.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+BSEG_BYTES                          00000020    00000001 =           1. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 13.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+REG_BANK_0                          00000000    00000008 =           8. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 14.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+BIT_BANK                            00000021    00000001 =           1. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 15.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+DSEG                                00000000    00000080 =         128. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000001F  _bp                                _bp
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 16.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+OSEG                                00000053    00000004 =           4. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 17.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+ISEG                                00000057    00000030 =          48. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000067  _UART1_receiveBuffer               uart_hal
+     0000007F  _UART1_transmitBuffer              uart_hal
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 18.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+SSEG                                00000087    00000070 =         112. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000087  __start__stack                     main
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 19.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+XSEG                                00000000    00000631 =        1585. bytes (REL,CON,XDATA)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+D:   00000002  _serialConsoleInitialise_PARM_2    serial_console
+D:   00000006  _serialConsoleInitialise_PARM_3    serial_console
+D:   00000051  _pwmConfigureOutput_PARM_2         advpwm_hal
+D:   00000052  _pwmConfigureOutput_PARM_3         advpwm_hal
+D:   00000053  _pwmConfigureOutput_PARM_4         advpwm_hal
+D:   00000054  _pwmConfigureOutput_PARM_5         advpwm_hal
+D:   00000055  _pwmConfigureOutput_PARM_6         advpwm_hal
+D:   00000056  _pwmConfigureOutput_PARM_7         advpwm_hal
+D:   00000059  _pwmConfigureCounter_PARM_2        advpwm_hal
+D:   0000005D  _pwmConfigureCounter_PARM_3        advpwm_hal
+D:   00000061  _pwmConfigureCounter_PARM_4        advpwm_hal
+D:   00000062  _pwmConfigureCounter_PARM_5        advpwm_hal
+D:   00000063  _pwmConfigureCounter_PARM_6        advpwm_hal
+D:   00000064  _pwmConfigureCounter_PARM_7        advpwm_hal
+D:   00000065  _pwmConfigureCounter_PARM_8        advpwm_hal
+D:   00000066  _pwmConfigureCounter_PARM_9        advpwm_hal
+D:   00000067  _pwmConfigureCounter_PARM_10       advpwm_hal
+D:   00000068  _pwmConfigureCounter_PARM_11       advpwm_hal
+D:   00000071  _pwmInitialisePWM_PARM_2           advpwm_hal
+D:   00000072  _pwmInitialisePWM_PARM_3           advpwm_hal
+D:   00000073  _pwmInitialisePWM_PARM_4           advpwm_hal
+D:   00000074  _pwmInitialisePWM_PARM_5           advpwm_hal
+D:   00000078  _pwmSetDutyCycle_PARM_2            advpwm_hal
+D:   00000080  _pwmInitialiseQuadratureEncoder_   advpwm_hal
+D:   00000081  _pwmInitialiseQuadratureEncoder_   advpwm_hal
+D:   00000082  _pwmInitialiseQuadratureEncoder_   advpwm_hal
+D:   00000084  _pwmInitialiseCapture_PARM_2       advpwm_hal
+D:   00000085  _pwmInitialiseCapture_PARM_3       advpwm_hal
+D:   00000086  _pwmInitialiseCapture_PARM_4       advpwm_hal
+D:   00000087  _pwmInitialiseCapture_PARM_5       advpwm_hal
+D:   00000088  _pwmInitialiseCapture_PARM_6       advpwm_hal
+D:   000000A5  _startTimer_PARM_2                 timer_hal
+D:   000000A9  _startTimer_PARM_3                 timer_hal
+D:   000000AA  _startTimer_PARM_4                 timer_hal
+D:   000000AB  _startTimer_PARM_5                 timer_hal
+D:   000000D5  _gpioWrite_PARM_2                  gpio_hal
+D:   000000F8  _i2cInitialiseMaster_PARM_2        i2c_hal
+D:   00000100  _i2cStartCommand_PARM_2            i2c_hal
+D:   0000010E  _uartTransmitBufferHasBytesFree_   uart_hal
+D:   00000113  _uartInitialise_PARM_2             uart_hal
+D:   00000117  _uartInitialise_PARM_3             uart_hal
+D:   00000118  _uartInitialise_PARM_4             uart_hal
+D:   00000119  _uartInitialise_PARM_5             uart_hal
+D:   0000011F  _uartGetBlock_PARM_2               uart_hal
+D:   00000122  _uartGetBlock_PARM_3               uart_hal
+D:   00000123  _uartGetBlock_PARM_4               uart_hal
+D:   00000125  _uartSendBlock_PARM_2              uart_hal
+D:   00000128  _uartSendBlock_PARM_3              uart_hal
+D:   00000129  _uartSendBlock_PARM_4              uart_hal
+D:   0000012D  _pwmOnCounterInterrupt_PARM_2      encoder
+ASxxxx Linker V03.00 + NoICE + sdld,  page 20.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+XSEG                                00000000    00000631 =        1585. bytes (REL,CON,XDATA)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+D:   0000012E  _pwmOnChannelInterrupt_PARM_2      encoder
+D:   00000134  __counter                          ssd1306
+D:   00000539  _SSD1306_SetPosition_PARM_2        ssd1306
+D:   0000053F  _SSD1306_DrawPixel_PARM_2          ssd1306
+D:   00000541  _SSD1306_DrawLine_PARM_2           ssd1306
+D:   00000542  _SSD1306_DrawLine_PARM_3           ssd1306
+D:   00000543  _SSD1306_DrawLine_PARM_4           ssd1306
+D:   0000055D  _stepper_set_steps_from_float_di   stepper_driver
+D:   000005A6  _display_step_control_set_steps_   display
+D:   000005CC  __divuint_PARM_2                   _divuint
+D:   000005D3  __modulong_PARM_2                  _modulong
+D:   000005DC  __divulong_PARM_2                  _divulong
+D:   000005E9  _memset_PARM_2                     _memset
+D:   000005EA  _memset_PARM_3                     _memset
+D:   000005EC  __gptrput_PARM_2                   _gptrput
+D:   000005ED  __mulint_PARM_2                    _mulint
+D:   000005EF  __mullong_PARM_2                   _mullong
+D:   000005F3  _vsprintf_PARM_2                   sprintf
+D:   000005F6  _vsprintf_PARM_3                   sprintf
+D:   000005FA  _vprintf_PARM_2                    vprintf
+D:   0000060F  __print_format_PARM_2              printf_large
+D:   00000612  __print_format_PARM_3              printf_large
+D:   00000615  __print_format_PARM_4              printf_large
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 21.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+XISEG                               00000631    000000A5 =         165. bytes (REL,CON,XDATA)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+D:   00000699  _current_page                      application
+D:   0000069A  _application_process_func          application
+D:   000006AA  _float_digit_pointer               application
+D:   000006AB  _float_digits                      application
+D:   000006B0  _inputs                            application
+D:   000006C0  _stepper_movement                  application
+D:   000006D4  _menu_page_selected_page           display
+D:   000006D5  _step_control_page_options_last    display
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 22.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+HOME                                00000000    000000E3 =         227. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000000DE  __sdcc_program_startup             main
+C:   000000E1  __sdcc_call_dptr                   
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 23.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT0                             000000E3    00000003 =           3. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000000E3  __sdcc_gsinit_startup              
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 24.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT2                             000000E6    0000000A =          10. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 25.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT3                             000000F0    00000021 =          33. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   000000F0  __mcs51_genXINIT                   
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 26.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT4                             00000111    0000002A =          42. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000111  __mcs51_genRAMCLEAR                
+C:   00000117  __mcs51_genXRAMCLEAR               
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 27.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSINIT                              0000013B    00000044 =          68. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 28.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+GSFINAL                             0000017F    00000003 =           3. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 29.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000182    000056DC =       22236. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000182  _serialConsoleInitialise           serial_console
+C:   000001C4  _putchar                           serial_console
+C:   0000023F  _getchar                           serial_console
+C:   000005EB  _pwmConfigureOutput                advpwm_hal
+C:   0000072F  _pwmConfigureCounter               advpwm_hal
+C:   0000096F  _pwmEnableMainOutput               advpwm_hal
+C:   00000990  _pwmEnableCounter                  advpwm_hal
+C:   000009FD  _pwmInitialisePWM                  advpwm_hal
+C:   00000AF4  _pwmSetDutyCycle                   advpwm_hal
+C:   00000C61  _pwmInitialiseQuadratureEncoder    advpwm_hal
+C:   00000D47  _pwmInitialiseCapture              advpwm_hal
+C:   00000DB2  _pwmA_isr                          advpwm_hal
+C:   0000106E  _pwmB_isr                          advpwm_hal
+C:   0000132F  _startTimer                        timer_hal
+C:   000016E8  _stopTimer                         timer_hal
+C:   00001844  _gpioConfigure                     gpio_hal
+C:   00001FDB  _gpioRead                          gpio_hal
+C:   00002044  _gpioWrite                         gpio_hal
+C:   00002135  _delay1ms                          delay
+C:   00002166  _delay10us                         delay
+C:   0000217D  _delay1us                          delay
+C:   000021A5  _fifoClear                         fifo_buffer
+C:   0000220A  _fifoIsFull                        fifo_buffer
+C:   0000224E  _fifoBytesFree                     fifo_buffer
+C:   00002288  _fifoWrite                         fifo_buffer
+C:   000023EA  _fifoRead                          fifo_buffer
+C:   00002625  _i2cInitialiseMaster               i2c_hal
+C:   0000269D  _i2cStart                          i2c_hal
+C:   000026A6  _i2cStop                           i2c_hal
+C:   000026AF  _i2cSendAck                        i2c_hal
+C:   000026D3  _i2cSendData                       i2c_hal
+C:   000026E7  _i2cReceiveAck                     i2c_hal
+C:   00002702  _i2cReceiveData                    i2c_hal
+C:   00002712  _i2cStartCommand                   i2c_hal
+C:   00002740  _i2cSendByte                       i2c_hal
+C:   00002766  _i2cReadByteSendAck                i2c_hal
+C:   000027F4  _uartIsTransmissionComplete        uart_hal
+C:   0000281E  _uartTransmitBufferHasBytesFree    uart_hal
+C:   00002850  _uartReceiveBufferBytes            uart_hal
+C:   0000287B  _uartFlushReceiveBuffer            uart_hal
+C:   00002892  _uartInitialise                    uart_hal
+C:   00002A78  _uart1_isr                         uart_hal
+C:   00002B1B  _uartGetBlock                      uart_hal
+C:   00002B86  _uartSendBlock                     uart_hal
+C:   00002C41  _pwmOnCounterInterrupt             encoder
+C:   00002C42  _pwmOnChannelInterrupt             encoder
+C:   00002C5B  _encoder_init                      encoder
+C:   00002C70  _encoder_process                   encoder
+C:   00002CA7  _get_encoder_count                 encoder
+C:   00002CB3  _get_encoder_dir                   encoder
+ASxxxx Linker V03.00 + NoICE + sdld,  page 30.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000182    000056DC =       22236. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00002CC7  _encoder_count_reset               encoder
+C:   00002CCF  _encoder_count_set                 encoder
+C:   00002CEB  _SSD1306_Init                      ssd1306
+C:   00002DE2  _SSD1306_NormalScreen              ssd1306
+C:   00002DFC  _SSD1306_InverseScreen             ssd1306
+C:   00002E16  _SSD1306_UpdateScreen              ssd1306
+C:   00002E5A  _SSD1306_ClearScreen               ssd1306
+C:   00002E70  _SSD1306_SetPosition               ssd1306
+C:   00002E95  _SSD1306_UpdatePosition            ssd1306
+C:   00002EDA  _SSD1306_DrawChar                  ssd1306
+C:   00002F6E  _SSD1306_DrawString                ssd1306
+C:   00002FD2  _SSD1306_DrawPixel                 ssd1306
+C:   0000303D  _SSD1306_DrawLine                  ssd1306
+C:   000032DB  _main                              main
+C:   00003341  _switch_init                       switch
+C:   0000334A  _get_switch_status                 switch
+C:   0000335C  _stepper_motor_init                stepper_driver
+C:   0000339E  _stepper_motor_set_freq            stepper_driver
+C:   000033D0  _stepper_motor_move                stepper_driver
+C:   00003505  _get_stepper_state                 stepper_driver
+C:   00003508  _stepper_set_microstep             stepper_driver
+C:   00003537  _stepper_set_enable                stepper_driver
+C:   00003552  _stepper_set_dir                   stepper_driver
+C:   00003566  _timer2_isr                        stepper_driver
+C:   0000361A  _stepper_set_steps_from_float_di   stepper_driver
+C:   000037D5  _application_process_welcome_pag   application
+C:   0000384C  _application_process_menu_page     application
+C:   0000392E  _application_process_step_contro   application
+C:   00003B37  _application_process_step_contro   application
+C:   00003BBA  _application_process_step_contro   application
+C:   00003C22  _application_process_step_contro   application
+C:   00003D15  _application_process_distance_co   application
+C:   00003D2D  _application_process_encoder_con   application
+C:   00003D45  _application_process_current_pag   application
+C:   00003D6C  _global_timer_init                 global_timer
+C:   00003D8F  _get_current_time                  global_timer
+C:   00003DA3  _timer3_isr                        global_timer
+C:   00003DE8  _buttons_init                      buttons
+C:   00003EDB  _buttons_process                   buttons
+C:   0000401A  _get_button_status                 buttons
+C:   0000405D  _get_encoder_button_status         buttons
+C:   00004063  _get_button1_status                buttons
+C:   00004069  _get_button2_status                buttons
+C:   0000406F  _display_welcome_page              display
+C:   000040DE  _display_menu_page                 display
+C:   0000422D  _display_step_control_page_first   display
+C:   000042C5  _display_step_control_page         display
+C:   000045F0  _display_distance_control_page_f   display
+C:   0000460B  _display_encoder_control_page_fi   display
+C:   00004626  _display_update_stepper_dir        display
+C:   00004655  _display_update_stepper_enable     display
+ASxxxx Linker V03.00 + NoICE + sdld,  page 31.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000182    000056DC =       22236. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00004684  _display_step_control_set_steps_   display
+C:   00004847  _display_step_control_set_micros   display
+C:   000048AC  _display_step_control_set_freque   display
+C:   00004911  __divuint                          _divuint
+C:   0000499E  __modulong                         _modulong
+C:   00004ADE  __divulong                         _divulong
+C:   00004BD2  _memset                            _memset
+C:   00004BFA  __gptrput                          _gptrput
+C:   00004C15  __mulint                           _mulint
+C:   00004C35  __mullong                          _mullong
+C:   00004C35  __mullong_dummy                    _mullong
+C:   00004D11  _vsprintf                          sprintf
+C:   00004D72  _sprintf                           sprintf
+C:   00004DDD  _vprintf                           vprintf
+C:   00004E1C  _printf                            vprintf
+C:   00004F25  __print_format                     printf_large
+C:   00005826  _strlen                            _strlen
+C:   0000583E  __gptrget                          _gptrget
+C:   0000585A  __sdcc_external_startup            _startup
+ASxxxx Linker V03.00 + NoICE + sdld,  page 32.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CONST                               0000585E    0000232D =        9005. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00006B63  _INIT_SSD1306                      ssd1306
+C:   00006F63  _UINT8_TO_SWITCH_STATUS            switch
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 33.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+XINIT                               00007B8B    000000A5 =         165. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 34.
+
+Files Linked                              [ module(s) ]
+
+build/serial-console.rel                  [  ]
+build/advpwm-hal.rel                      [  ]
+build/timer-hal.rel                       [  ]
+build/gpio-hal.rel                        [  ]
+build/delay.rel                           [  ]
+build/fifo-buffer.rel                     [  ]
+build/i2c-hal.rel                         [  ]
+build/uart-hal.rel                        [  ]
+build/encoder.rel                         [  ]
+build/ssd1306.rel                         [  ]
+build/main.rel                            [  ]
+build/switch.rel                          [  ]
+build/stepper_driver.rel                  [  ]
+build/application.rel                     [  ]
+build/global_timer.rel                    [  ]
+build/buttons.rel                         [  ]
+build/display.rel                         [  ]
+build/crtxinit.rel                        [  ]
+
+
+Libraries Linked                          [ object file ]
+
+/usr/bin/../share/sdcc/lib/large/libint.lib
+                                          [ _divuint.rel ]
+/usr/bin/../share/sdcc/lib/large/liblong.lib
+                                          [ _modulong.rel ]
+/usr/bin/../share/sdcc/lib/large/liblong.lib
+                                          [ _divulong.rel ]
+/usr/bin/../share/sdcc/lib/large/mcs51.lib
+                                          [ crtclear.rel ]
+/usr/bin/../share/sdcc/lib/large/libsdcc.lib
+                                          [ _memset.rel ]
+/usr/bin/../share/sdcc/lib/large/libsdcc.lib
+                                          [ _gptrput.rel ]
+/usr/bin/../share/sdcc/lib/large/libint.lib
+                                          [ _mulint.rel ]
+/usr/bin/../share/sdcc/lib/large/liblong.lib
+                                          [ _mullong.rel ]
+/usr/bin/../share/sdcc/lib/large/mcs51.lib
+                                          [ crtxclear.rel ]
+/usr/bin/../share/sdcc/lib/large/libsdcc.lib
+                                          [ sprintf.rel ]
+/usr/bin/../share/sdcc/lib/large/mcs51.lib
+                                          [ crtcall.rel ]
+/usr/bin/../share/sdcc/lib/large/libsdcc.lib
+                                          [ _bp.rel ]
+/usr/bin/../share/sdcc/lib/large/libsdcc.lib
+                                          [ vprintf.rel ]
+/usr/bin/../share/sdcc/lib/large/libsdcc.lib
+                                          [ printf_large.rel ]
+/usr/bin/../share/sdcc/lib/large/mcs51.lib
+                                          [ crtpagesfr.rel ]
+/usr/bin/../share/sdcc/lib/large/libsdcc.lib
+                                          [ _strlen.rel ]
+/usr/bin/../share/sdcc/lib/large/mcs51.lib
+                                          [ crtstart.rel ]
+/usr/bin/../share/sdcc/lib/large/libsdcc.lib
+                                          [ _gptrget.rel ]
+/usr/bin/../share/sdcc/lib/large/libsdcc.lib
+                                          [ _startup.rel ]
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 35.
+
+User Base Address Definitions
+
+HOME = 0x0000
+ISEG = 0x0000
+BSEG = 0x0000
+
+
