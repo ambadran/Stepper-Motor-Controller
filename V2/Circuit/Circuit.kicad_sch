@@ -4733,6 +4733,28 @@
 			)
 		)
 	)
+	(global_label "control-mode-switch"
+		(shape input)
+		(at 91.44 160.02 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "27d7acd6-1435-4819-b17a-cc45fc1a67fd")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 115.2893 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "D3"
 		(shape input)
 		(at 160.02 151.13 270)
@@ -6167,6 +6189,73 @@
 			(project "Circuit"
 				(path "/b31af398-847c-4559-8133-d2c3ef6f7d2e"
 					(reference "R4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 91.44 162.56 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "3f3c55f5-ea59-4994-a563-54628bc9573b")
+		(property "Reference" "#PWR029"
+			(at 97.79 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 95.25 162.5599 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 91.44 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 91.44 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 91.44 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c9d27059-dd95-4a51-8ceb-16752f955c2d")
+		)
+		(instances
+			(project "Circuit"
+				(path "/b31af398-847c-4559-8133-d2c3ef6f7d2e"
+					(reference "#PWR029")
 					(unit 1)
 				)
 			)
@@ -7841,6 +7930,74 @@
 			(project ""
 				(path "/b31af398-847c-4559-8133-d2c3ef6f7d2e"
 					(reference "STC8H8K64U1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 86.36 162.56 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8d81dfde-b610-497d-a089-f41c1a0b8e4c")
+		(property "Reference" "Control-mode-switch"
+			(at 86.36 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "JST-2P"
+			(at 86.36 156.21 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Connector_JST:JST_EH_B2B-EH-A_1x02_P2.50mm_Vertical"
+			(at 86.36 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 86.36 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 86.36 162.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "14a0066d-d206-4e44-92e5-07b69a177ee1")
+		)
+		(pin "1"
+			(uuid "aa8b4ff0-dd2e-44e4-9648-d1e1f8bf8273")
+		)
+		(instances
+			(project "Circuit"
+				(path "/b31af398-847c-4559-8133-d2c3ef6f7d2e"
+					(reference "Control-mode-switch")
 					(unit 1)
 				)
 			)
