@@ -1,29 +1,22 @@
 #include "project-defs.h"
 
-static LCDSerialLinkConfig lcdLink = {
-	// RS (CS#) = P1.6
-	.csOutput = GPIO_PIN_CONFIG(GPIO_PORT1, GPIO_PIN6, GPIO_BIDIRECTIONAL_MODE),
-	// E (SCLK) = P1.5
-	.sclkOutput = GPIO_PIN_CONFIG(GPIO_PORT1, GPIO_PIN5, GPIO_BIDIRECTIONAL_MODE),
-	// RW (MOSI) = P1.3
-	.dataInOut = GPIO_PIN_CONFIG(GPIO_PORT1, GPIO_PIN3, GPIO_BIDIRECTIONAL_MODE),
-};
-
-// RST# = P1.1
-LCD_DEVICE_INTERFACE_WITH_RESET(lcdDevice, &lcdLink, GPIO_PORT1, GPIO_PIN1)
-
-LCD_DEVICE_GRAPHICS(lcdDevice, 4, 16, 128, 64)
-
+/**** MUST DECLARE INTERRUPTS IN MAIN.C FILE AS PER SDCC REQUIREMENT ****/
+INTERRUPT(GLOBAL_TIMER_ISR, GLOBAL_TIMER_INTERRUPT);
 
 void main() {
   INIT_EXTENDED_SFR();
 
+  // Initializations
+  global_timer_init();
+  encoder_init();
+  buttons_init();
+  switch_init();
+  display_init();
 
- 	lcdInitialiseDevice(&lcdDevice);
-	lcdTxtInitialiseDisplayMode(&lcdDevice);
-	 
   // Enable Interrupts
   EA = 1;
+
+  // Main Routine
 	while (1) {
 		lcdTxtClear(&lcdDevice);
 		delay1ms(1000);
