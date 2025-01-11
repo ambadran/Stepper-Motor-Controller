@@ -1,7 +1,7 @@
 #include "project-defs.h"
 
-static GpioConfig hold_free_switch = {.port = SWITCH_PORT, 
-                                     .pin = SWITCH_PIN, 
+static GpioConfig hold_free_switch = {.port = HOLD_FREE_SWITCH_PORT, 
+                                     .pin = HOLD_FREE_SWITCH_PIN, 
                                      .count = 1, 
                                      .pinMode = GPIO_HIGH_IMPEDANCE_MODE,	
                                      .pinInterrupt = DISABLE_GPIO_PIN_INTERRUPT, 
@@ -13,8 +13,8 @@ static GpioConfig hold_free_switch = {.port = SWITCH_PORT,
                                      .digitalInput = ENABLE_GPIO_DIGITAL_INPUT,
                                      };
 
-static GpioConfig cw_ccw_switch = {.port = SWITCH_PORT, 
-                                   .pin = SWITCH_PIN, 
+static GpioConfig cw_ccw_switch = {.port = CW_CCW_SWITCH_PORT, 
+                                   .pin = CW_CCW_SWITCH_PIN, 
                                    .count = 1, 
                                    .pinMode = GPIO_HIGH_IMPEDANCE_MODE,	
                                    .pinInterrupt = DISABLE_GPIO_PIN_INTERRUPT, 
@@ -26,8 +26,8 @@ static GpioConfig cw_ccw_switch = {.port = SWITCH_PORT,
                                    .digitalInput = ENABLE_GPIO_DIGITAL_INPUT,
                                    };
 
-static GpioConfig control_mode_switch = {.port = SWITCH_PORT, 
-                                         .pin = SWITCH_PIN, 
+static GpioConfig control_mode_switch = {.port = CONTROL_MODE_SWITCH_PORT, 
+                                         .pin = CONTROL_MODE_SWITCH_PIN, 
                                          .count = 1, 
                                          .pinMode = GPIO_HIGH_IMPEDANCE_MODE,	
                                          .pinInterrupt = DISABLE_GPIO_PIN_INTERRUPT, 
