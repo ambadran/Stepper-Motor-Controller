@@ -25,6 +25,13 @@ void stepper_motor_init(void) {
 
 void stepper_motor_set_freq(uint32_t frequency_input) { frequency = frequency_input; }
 
+void stepper_motor_reset_movement(stepper_movement_t* stepper_movement) {
+  stepper_movement->stepper_enable_status = STEPPER_DISABLE;
+  stepper_movement->stepper_direction = STEPPER_CLOCKWISE_DIR;
+  stepper_movement->frequency = DEFAULT_STEPPER_FREQUENCY;
+  stepper_movement->steps = DEFAULT_STEP_NUM;
+}
+
 void stepper_motor_move(stepper_movement_t* stepper_movement) {
 
   stepper_enable_after_move = stepper_movement->stepper_enable_status;

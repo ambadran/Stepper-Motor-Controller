@@ -1,7 +1,7 @@
 #include "project-defs.h"
 
 const char* STEPPER_ENABLE_STATUS_TO_CHAR[] = {"HOLD", "FREE"};
-const char* STEPPER_DIR_STATUS_TO_CHAR[] = {"CW", "CCW"};
+const char* STEPPER_DIR_STATUS_TO_CHAR[] = {"CW ", "CCW"};
 
 static char buffer[20];
 static LCDSerialLinkConfig lcdLink = {
@@ -43,7 +43,7 @@ void display_step_control_reset(stepper_movement_t* stepper_movement) {
   lcdTxtPrintAt(&lcdDevice, 0, 0, buffer);
   sprintf(buffer, "freq: %d", stepper_movement->frequency);
   lcdTxtPrintAt(&lcdDevice, 1, 0, buffer);
-  sprintf(buffer, "%s         %s", STEPPER_DIR_STATUS_TO_CHAR[stepper_movement->stepper_direction],
+  sprintf(buffer, "%s          %s", STEPPER_DIR_STATUS_TO_CHAR[stepper_movement->stepper_direction],
                                      STEPPER_ENABLE_STATUS_TO_CHAR[stepper_movement->stepper_enable_status]);
   lcdTxtPrintAt(&lcdDevice, 2, 0, buffer);
 
@@ -61,11 +61,13 @@ void display_update_stepper_frequency(int16_t frequency) {
   sprintf(buffer, "%d", frequency);
     lcdTxtPrintAt(&lcdDevice, 1, 6, buffer);
 }
-void display_update_stepper_enable_status(stepper_enable_status_t stepper_enable_status) {
-  lcdTxtPrintAt(&lcdDevice, 2, 0, STEPPER_ENABLE_STATUS_TO_CHAR[stepper_enable_status]);
-}
+
 void display_update_stepper_direction(stepper_direction_t stepper_direction) {
-  lcdTxtPrintAt(&lcdDevice, 2, 11, STEPPER_DIR_STATUS_TO_CHAR[stepper_direction]);
+  lcdTxtPrintAt(&lcdDevice, 2, 0, STEPPER_DIR_STATUS_TO_CHAR[stepper_direction]);
+}
+
+void display_update_stepper_enable_status(stepper_enable_status_t stepper_enable_status) {
+  lcdTxtPrintAt(&lcdDevice, 2, 13, STEPPER_ENABLE_STATUS_TO_CHAR[stepper_enable_status]);
 }
 
 

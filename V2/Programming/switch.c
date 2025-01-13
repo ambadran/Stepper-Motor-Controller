@@ -49,6 +49,9 @@ void switch_init(void) {
 }
 
 const switch_status_t UINT8_TO_SWITCH_STATUS[] = {SWITCH_OFF, SWITCH_ON};
-switch_status_t get_hold_free_switch_status(void) { return UINT8_TO_SWITCH_STATUS[gpioRead(&hold_free_switch)]; }
-switch_status_t get_cw_ccw_switch_switch_status(void) { return UINT8_TO_SWITCH_STATUS[gpioRead(&cw_ccw_switch)]; }
+const stepper_enable_status_t UINT8_TO_STEPPER_EN_STAT[] = {STEPPER_ENABLE, STEPPER_DISABLE};
+const stepper_direction_t UINT8_TO_STEPPER_DIR[] = {STEPPER_CLOCKWISE_DIR, STEPPER_ANTICLOCKWISE_DIR};
+
+stepper_enable_status_t get_hold_free_switch_status(void) { return UINT8_TO_STEPPER_EN_STAT[gpioRead(&hold_free_switch)]; }
+stepper_direction_t get_cw_ccw_switch_switch_status(void) { return UINT8_TO_STEPPER_DIR[gpioRead(&cw_ccw_switch)]; }
 switch_status_t get_control_mode_switch_status(void) { return UINT8_TO_SWITCH_STATUS[gpioRead(&control_mode_switch)]; }

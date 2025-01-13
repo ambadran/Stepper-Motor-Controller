@@ -20,6 +20,7 @@ typedef struct {
 
 void stepper_motor_init(void);
 void stepper_motor_set_freq(uint32_t frequency);
+void stepper_motor_reset_movement(stepper_movement_t* stepper_movement);
 void stepper_motor_move(stepper_movement_t* stepper_movement);
 __bit get_stepper_state(void);
 void stepper_set_enable(stepper_enable_status_t stepper_enable_status);

@@ -19,6 +19,7 @@ void main() {
   EA = 1;
 
   // Starting Application
+  delay1ms(500);
   application_init();
 
   // Main Routine
@@ -26,6 +27,7 @@ void main() {
     encoders_process();  // getting latest encoder readings
     buttons_process();  // getting latest button readings
 
+    // Process Application
     application_process_current_page();
 	}
 
