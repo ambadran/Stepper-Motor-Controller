@@ -60,13 +60,15 @@ void stepper_stop_motor(void) {
   stepper_active = 0;
 }
 
-void stepper_set_enable(stepper_enable_status_t stepper_enable_status) {
+void stepper_set_enable(stepper_movement_t* stepper_movement, stepper_enable_status_t stepper_enable_status) {
   if(!stepper_active) {
+    stepper_movement->stepper_enable_status = stepper_enable_status;
     gpioWrite(&stepper_enable_pin, stepper_enable_status);
   }
 }
 
-void stepper_set_dir(stepper_direction_t stepper_direction) { 
+void stepper_set_dir(stepper_movement_t* stepper_movement, stepper_direction_t stepper_direction) { 
+  stepper_movement.stepper_direction = stepper_direction;
   gpioWrite(&stepper_dir_pin, stepper_direction);
 }
 

@@ -1,5 +1,6 @@
 #include "project-defs.h"
 
+// Mappings stepper settings to strings to be displayed
 const char* STEPPER_ENABLE_STATUS_TO_CHAR[] = {"HOLD", "FREE"};
 const char* STEPPER_DIR_STATUS_TO_CHAR[] = {"CW ", "CCW"};
 
@@ -39,7 +40,7 @@ void display_welcome_page(void) {
  */
 void display_step_control_reset(stepper_movement_t* stepper_movement) {
   lcdTxtClear(&lcdDevice);
-  sprintf(buffer, "Steps: %d", stepper_movement->steps);
+  sprintf(buffer, "Steps: %1f", (float)(stepper_movement->steps)/(float)(STEPPER_CM_TO_STEPS));
   lcdTxtPrintAt(&lcdDevice, 0, 0, buffer);
   sprintf(buffer, "freq: %d", stepper_movement->frequency);
   lcdTxtPrintAt(&lcdDevice, 1, 0, buffer);
@@ -49,17 +50,14 @@ void display_step_control_reset(stepper_movement_t* stepper_movement) {
 
 }
 
-/* void display_update_stepper_step(uint32_t steps) { */
-/* sprintf(buffer, "%lu", stepper_movement->steps) */
-void display_update_stepper_step(int16_t steps) {
-  sprintf(buffer, "%d", steps);
-  lcdTxtPrintAt(&lcdDevice, 0, 7, buffer);
+void display_update_stepper_step(uint8_t digit, uint8_t placeholder) {
+  sprintf(buffer, "%d", digit);
+  //TODO: need to +1 the pointer for the decimal place
+  lcdTxtPrintAt(&lcdDevice, 0, 7+placeholder, buffer);
 }
-/* void display_update_stepper_frequency(uint32_t frequency) { */
-/*   sprintf(buffer, "%lu", frequency); */
-void display_update_stepper_frequency(int16_t frequency) {
-  sprintf(buffer, "%d", frequency);
-    lcdTxtPrintAt(&lcdDevice, 1, 6, buffer);
+void display_update_stepper_frequency(uint8_t digit, uint8_t placeholder) {
+  sprintf(buffer, "%d", digit);
+  lcdTxtPrintAt(&lcdDevice, 1, 6+placeholder, buffer);
 }
 
 void display_update_stepper_direction(stepper_direction_t stepper_direction) {
