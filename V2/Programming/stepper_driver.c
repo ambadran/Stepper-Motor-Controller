@@ -8,7 +8,6 @@ static GpioConfig stepper_index_pin = GPIO_PIN_CONFIG(STEPPER_PORT, STEPPER_INDE
 
 static volatile uint32_t step_counter = 0;
 static volatile __bit stepper_active = 0;
-static volatile uint32_t frequency = DEFAULT_STEPPER_FREQUENCY;
 static stepper_enable_status_t stepper_enable_after_move;
 
 void stepper_motor_init(void) {
@@ -23,8 +22,6 @@ void stepper_motor_init(void) {
 
 }
 
-void stepper_motor_set_freq(uint32_t frequency_input) { frequency = frequency_input; }
-
 void stepper_motor_reset_movement(stepper_movement_t* stepper_movement) {
   stepper_movement->stepper_enable_status = STEPPER_DISABLE;
   stepper_movement->stepper_direction = STEPPER_CLOCKWISE_DIR;
@@ -36,7 +33,6 @@ void stepper_motor_move(stepper_movement_t* stepper_movement) {
 
   stepper_enable_after_move = stepper_movement->stepper_enable_status;
   gpioWrite(&stepper_dir_pin, stepper_movement->stepper_direction);
-  frequency = stepper_movement->frequency;
   step_counter = stepper_movement->steps;
 
   stepper_active = 1;
@@ -45,7 +41,7 @@ void stepper_motor_move(stepper_movement_t* stepper_movement) {
   // Timer init
 	startTimer(
 		STEPPER_TIMER, 
-		frequencyToSysclkDivisor(frequency),
+		frequencyToSysclkDivisor(stepper_movement->frequency),
 		DISABLE_OUTPUT, 
 		ENABLE_INTERRUPT, 
 		FREE_RUNNING
@@ -53,11 +49,12 @@ void stepper_motor_move(stepper_movement_t* stepper_movement) {
 
 }
 
-__bit get_stepper_state(void) { return stepper_active; }
+void stepper_set_steps(stepper_movement_t* stepper_movement, uint32_t steps) {
+  stepper_movement->steps = steps;
+}
 
-void stepper_stop_motor(void) { 
-  stopTimer(STEPPER_TIMER); 
-  stepper_active = 0;
+void stepper_set_freq(stepper_movement_t* stepper_movement, uint32_t frequency) { 
+  stepper_movement->frequency = frequency; 
 }
 
 void stepper_set_enable(stepper_movement_t* stepper_movement, stepper_enable_status_t stepper_enable_status) {
@@ -68,34 +65,16 @@ void stepper_set_enable(stepper_movement_t* stepper_movement, stepper_enable_sta
 }
 
 void stepper_set_dir(stepper_movement_t* stepper_movement, stepper_direction_t stepper_direction) { 
-  stepper_movement.stepper_direction = stepper_direction;
+  stepper_movement->stepper_direction = stepper_direction;
   gpioWrite(&stepper_dir_pin, stepper_direction);
 }
 
-void stepper_set_steps_from_float_digits(stepper_movement_t* stepper_movement, uint8_t* float_digits) {
-    if (!stepper_movement || !float_digits) {
-        return; // Handle null pointers safely
-    }
-
-    // Extract digits
-    uint8_t hundreds = float_digits[0];
-    uint8_t tens = float_digits[1];
-    uint8_t ones = float_digits[2];
-    uint8_t tenths = float_digits[3];
-    uint8_t hundredths = float_digits[4];
-
-    // Convert to total revolutions as a float-like value
-    uint32_t whole_part = (hundreds * 100) + (tens * 10) + ones; // Whole revolutions
-    uint32_t fractional_part = (tenths * 10) + hundredths;       // Fractional part in hundredths
-
-    // Scale fractional part to steps (fractional_part / 100.0) * 3200
-    // Avoid floating point by direct computation:
-    uint32_t fractional_steps = (fractional_part * 3200) / 100;
-
-    // Calculate total steps
-    stepper_movement->steps = (whole_part * 3200) + fractional_steps;
-
+void stepper_stop_motor(void) { 
+  stopTimer(STEPPER_TIMER); 
+  stepper_active = 0;
 }
+
+__bit get_stepper_state(void) { return stepper_active; }
 
 INTERRUPT(STEPPER_TIMER_ISR, STEPPER_TIMER_INTERRUPT) {
 

@@ -1,5 +1,7 @@
 #include "project-defs.h"
 
+const switch_status_t UINT8_TO_SWITCH_STATUS[] = {SWITCH_OFF, SWITCH_ON};
+
 static GpioConfig hold_free_switch = {.port = HOLD_FREE_SWITCH_PORT, 
                                      .pin = HOLD_FREE_SWITCH_PIN, 
                                      .count = 1, 
@@ -48,7 +50,6 @@ void switch_init(void) {
   gpioConfigure(&control_mode_switch);
 }
 
-const switch_status_t UINT8_TO_SWITCH_STATUS[] = {SWITCH_OFF, SWITCH_ON};
 switch_status_t get_hold_free_switch_status(void) { return UINT8_TO_SWITCH_STATUS[gpioRead(&hold_free_switch)]; }
 switch_status_t get_cw_ccw_switch_switch_status(void) { return UINT8_TO_SWITCH_STATUS[gpioRead(&cw_ccw_switch)]; }
 switch_status_t get_control_mode_switch_status(void) { return UINT8_TO_SWITCH_STATUS[gpioRead(&control_mode_switch)]; }

@@ -1,8 +1,8 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#define STEP_VALUE_DIGIT_NUM 3 // 00.00
-#define FREQ_VALUE_DIGIT_NUM 2 // 000
+#define STEP_VALUE_DIGIT_NUM 6 // 00.00
+#define FREQ_VALUE_DIGIT_NUM 6 // 000
 
 typedef struct {
   button_status_t current_val;
@@ -50,9 +50,9 @@ typedef enum {
 typedef struct {
   control_mode_t control_mode;
   movement_state_t movement_state;
-  uint8_t step_value_digit_pointer;
+  int8_t step_value_digit_pointer;
   uint8_t step_value_digits[STEP_VALUE_DIGIT_NUM];
-  uint8_t freq_value_digit_pointer;
+  int8_t freq_value_digit_pointer;
   uint8_t freq_value_digits[FREQ_VALUE_DIGIT_NUM];
 } application_states_t;
 

@@ -44,8 +44,8 @@ void buttons_init(void) {
   encoder1_button.gpio.speed = GPIO_SPEED_SLOWEST,
   encoder1_button.gpio.digitalInput = ENABLE_GPIO_DIGITAL_INPUT,
 
-  encoder2_button.gpio.port = ENCODER1_BUTTON_PORT, 
-  encoder2_button.gpio.pin = ENCODER1_BUTTON_PIN, 
+  encoder2_button.gpio.port = ENCODER2_BUTTON_PORT, 
+  encoder2_button.gpio.pin = ENCODER2_BUTTON_PIN, 
   encoder2_button.gpio.count = 1, 
   encoder2_button.gpio.pinMode = GPIO_HIGH_IMPEDANCE_MODE,	
   encoder2_button.gpio.pinInterrupt = DISABLE_GPIO_PIN_INTERRUPT, 
@@ -111,6 +111,6 @@ button_status_t get_button_status(uint8_t button_ind) {
 button_status_t get_run_pause_button_status(void) { return get_button_status(RUN_PAUSE_BUTTON_IND); }
 button_status_t get_stop_button_status(void) { return get_button_status(STOP_BUTTON_IND); }
 button_status_t get_encoder1_button_status(void) { return get_button_status(ENCODER1_BUTTON_IND); }
-button_status_t get_encoder2_button_status(void) { return get_button_status(ENCODER1_BUTTON_IND); }
+button_status_t get_encoder2_button_status(void) { return get_button_status(ENCODER2_BUTTON_IND); }
 
 

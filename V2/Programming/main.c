@@ -8,6 +8,12 @@ void main() {
   INIT_EXTENDED_SFR();
 
   // Initializations
+  serialConsoleInitialise(
+      CONSOLE_UART, 
+      CONSOLE_SPEED, 
+      CONSOLE_PIN_CONFIG
+      );
+
   global_timer_init();
   stepper_motor_init();
   encoders_init();

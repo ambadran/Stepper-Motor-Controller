@@ -19,13 +19,13 @@ typedef struct {
 } stepper_movement_t;
 
 void stepper_motor_init(void);
-void stepper_motor_set_freq(uint32_t frequency);
 void stepper_motor_reset_movement(stepper_movement_t* stepper_movement);
 void stepper_motor_move(stepper_movement_t* stepper_movement);
-__bit get_stepper_state(void);
-void stepper_set_enable(stepper_enable_status_t stepper_enable_status);
-void stepper_set_dir(stepper_direction_t stepper_direction);
-void stepper_set_steps_from_float_digits(stepper_movement_t* stepper_movement, uint8_t* float_digits);
+void stepper_set_steps(stepper_movement_t* stepper_movement, uint32_t steps);
+void stepper_set_freq(stepper_movement_t* stepper_movement, uint32_t frequency);
+void stepper_set_enable(stepper_movement_t* stepper_movement, stepper_enable_status_t stepper_enable_status);
+void stepper_set_dir(stepper_movement_t* stepper_movement, stepper_direction_t stepper_direction);
 void stepper_stop_motor(void);
+__bit get_stepper_state(void);
 
 #endif

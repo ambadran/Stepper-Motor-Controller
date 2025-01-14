@@ -21,15 +21,26 @@ void application_process_current_page(void) { application_process_func[applicati
 void application_init(void) {
   
   // Initializing Input Handler
-  inputs.run_pause_button = {BUTTON_IDLE, get_run_pause_button_status};
-  inputs.stop_button= {BUTTON_IDLE, get_stop_button_status};
-  inputs.encoder1_button = {BUTTON_IDLE, get_encoder1_button_status};
-  inputs.encoder1_button = {BUTTON_IDLE, get_encoder2_button_status};
-  inputs.hold_free_switch = {SWITCH_OFF, get_hold_free_switch_status};
-  inputs.cw_ccw_switch = {SWITCH_OFF, get_cw_ccw_switch_switch_status};
-  inputs.control_mode_switch = {SWITCH_OFF, get_control_mode_switch_status};
-  inputs.encoder1_value = {0, get_encoder1_count};
-  inputs.encoder2_value = {0, get_encoder2_count};
+  inputs.run_pause_button.current_val = BUTTON_IDLE;
+  inputs.run_pause_button.get_func = get_run_pause_button_status;
+  inputs.stop_button.current_val = BUTTON_IDLE;
+  inputs.stop_button.get_func = get_stop_button_status;
+  inputs.encoder1_button.current_val = BUTTON_IDLE;
+  inputs.encoder1_button.get_func = get_encoder1_button_status;
+  inputs.encoder2_button.current_val = BUTTON_IDLE;
+  inputs.encoder2_button.get_func = get_encoder2_button_status;
+  inputs.hold_free_switch.current_val = SWITCH_OFF;
+  inputs.hold_free_switch.get_func = get_hold_free_switch_status;
+  inputs.cw_ccw_switch.current_val = SWITCH_OFF;
+  inputs.cw_ccw_switch.get_func = get_cw_ccw_switch_switch_status;
+  inputs.control_mode_switch.current_val = SWITCH_OFF;
+  inputs.control_mode_switch.get_func = get_control_mode_switch_status;
+  // first digit of default step value
+  inputs.encoder1_value.current_val = get_most_significant_digit(DEFAULT_STEP_NUM);
+  inputs.encoder1_value.get_func = get_encoder1_count;
+  // first digit of default frequency value
+  inputs.encoder2_value.current_val = get_most_significant_digit(DEFAULT_STEPPER_FREQUENCY);
+  inputs.encoder2_value.get_func = get_encoder2_count;
 
   // Initializing Output Handler
   stepper_motor_reset_movement(&stepper_movement);
@@ -37,11 +48,10 @@ void application_init(void) {
   // Initializing Application States
   application_states.control_mode = STEP_CONTROL;
   application_states.movement_state = MOVEMENT_STATE_IDLE;
-  application_states.step_value_digit_pointer = 0;
-  application_states.freq_value_digit_pointer = 0;
-  // TODO: should initiate by a function that converts the default step value to this
-  application_states.step_value_digits = {0, 0, 0, 0}; 
-  application_states.freq_value_digits = {0, 0, 0, 0}; 
+  set_digit_array_from_uint32(application_states.step_value_digits, STEP_VALUE_DIGIT_NUM, stepper_movement.steps);
+  set_digit_array_from_uint32(application_states.freq_value_digits, STEP_VALUE_DIGIT_NUM, stepper_movement.frequency);
+  application_states.step_value_digit_pointer = STEP_VALUE_DIGIT_NUM-1;
+  application_states.freq_value_digit_pointer = FREQ_VALUE_DIGIT_NUM-1;
 
   // Welcome Page
   display_welcome_page();
@@ -63,7 +73,7 @@ void application_step_control_mode(void) {
   inputs.encoder1_value.current_val = inputs.encoder1_value.get_func();
   inputs.encoder2_value.current_val = inputs.encoder2_value.get_func();
 
-  switch(application.movement_state) {
+  switch(application_states.movement_state) {
 
     case MOVEMENT_STATE_IDLE:
 
@@ -98,22 +108,46 @@ void application_step_control_mode(void) {
 
       // encoder1 button
       if(inputs.encoder1_button.current_val == BUTTON_PRESSED) {
-        application_states.step_value_digit_pointer++;
-        if(application.step_value_digit_pointer >= STEP_VALUE_DIGIT_NUM) {
-          application_states.step_value_digit_pointer = 0;
+        // Incrementing the step digit pointer
+        application_states.step_value_digit_pointer--;
+
+        // constraining it to the number of digits available
+        if(application_states.step_value_digit_pointer < 0) {
+          application_states.step_value_digit_pointer = STEP_VALUE_DIGIT_NUM-1;
         }
+
+        // setting the encoder to the value of the next digit
+        encoder1_count_set((int16_t)application_states.step_value_digits[application_states.step_value_digit_pointer]);
+
+        //TODO: show what character it's pointing at
+        
+        /* display_test(application_states.step_value_digit_pointer, application_states.step_value_digits); */
+        /* printf("step: %lu\n", stepper_movement.steps); */
       }
 
       // encoder2 button
-      if(inputs.encoder1_button.current_val == BUTTON_PRESSED) {
-        application_states.freq_value_digit_pointer++;
-        if(application.freq_value_digit_pointer >= STEP_VALUE_DIGIT_NUM) {
-          application_states.freq_value_digit_pointer = 0;
+      if(inputs.encoder2_button.current_val == BUTTON_PRESSED) {
+        // Incrementing the freq digit pointer
+        application_states.freq_value_digit_pointer--;
+
+        // constraining it to the number of digits available
+        if(application_states.freq_value_digit_pointer < 0) {
+          application_states.freq_value_digit_pointer = FREQ_VALUE_DIGIT_NUM-1;
         }
+
+        // setting the encoder to the value of the next digit
+        encoder2_count_set((int16_t)application_states.freq_value_digits[application_states.freq_value_digit_pointer]);
+
+        //TODO: show what character it's pointing at
+        
+        /* display_test(application_states.freq_value_digit_pointer, application_states.freq_value_digits); */
+        /* printf("freq: %lu\n", stepper_movement.frequency); */
       }
 
       // encoder1 value
-      if(application_states.step_value_digits[application_states.step_value_digit_pointer] != inputs.encoder1_value.current_val) {
+      if(application_states.step_value_digits[application_states.step_value_digit_pointer] != (uint8_t)inputs.encoder1_value.current_val) {
+
+        // constraining encoder value to single digit
         if (inputs.encoder1_value.current_val > 9) {
           encoder1_count_reset();
           inputs.encoder1_value.current_val = 0;
@@ -122,13 +156,21 @@ void application_step_control_mode(void) {
           encoder1_count_set(9);
           inputs.encoder1_value.current_val = 9;
         }
-        application_states.step_value_digits[application_states.step_value_digit_pointer] = inputs.encoder1_value.current_val;
-        display_update_stepper_step(inputs.encoder1_value.current_val, application_states.step_value_digit_pointer);
-      }
 
+        // updating the digit array
+        application_states.step_value_digits[application_states.step_value_digit_pointer] = (uint8_t)inputs.encoder1_value.current_val;
+
+        // updating the stepper_movement
+        stepper_set_steps(&stepper_movement, digit_array_to_uint32(application_states.step_value_digits, STEP_VALUE_DIGIT_NUM));
+        
+        // updating display with step values
+        display_update_stepper_step(application_states.step_value_digit_pointer, stepper_movement.steps);
+      }
       
       // encoder2 value
-      if(application_states.freq_value_digits[application_states.freq_value_digit_pointer] != inputs.encoder2_value.current_val) {
+      if(application_states.freq_value_digits[application_states.freq_value_digit_pointer] != (uint8_t)inputs.encoder2_value.current_val) {
+
+        // constraining encoder value to single digit
         if (inputs.encoder2_value.current_val > 9) {
           encoder2_count_reset();
           inputs.encoder2_value.current_val = 0;
@@ -137,8 +179,15 @@ void application_step_control_mode(void) {
           encoder2_count_set(9);
           inputs.encoder2_value.current_val = 9;
         }
-        application_states.freq_value_digits[application_states.freq_value_digit_pointer] = inputs.encoder2_value.current_val;
-        display_update_stepper_frequency(inputs.encoder2_value.current_val, application_states.freq_value_digit_pointer);
+
+        // updating the digit array
+        application_states.freq_value_digits[application_states.freq_value_digit_pointer] = (uint8_t)inputs.encoder2_value.current_val;
+
+        // updating the stepper_movement
+        stepper_set_freq(&stepper_movement, digit_array_to_uint32(application_states.freq_value_digits, FREQ_VALUE_DIGIT_NUM));
+
+        // updating display with step values
+        display_update_stepper_frequency(application_states.freq_value_digit_pointer, stepper_movement.frequency);
       }
       break;
 
