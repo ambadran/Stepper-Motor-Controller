@@ -48,8 +48,8 @@
 #define ENCODER1_DT_PIN GPIO_PIN4
 
 // external pin INTERRUPTS
-#define STOP_BUTTON_PIN_ISR extint2_isr
-#define STOP_BUTTON_PIN_INTERRUPT EXTINT2_INTERRUPT
+/* #define STOP_BUTTON_PIN_ISR extint2_isr */
+/* #define STOP_BUTTON_PIN_INTERRUPT EXTINT2_INTERRUPT */
 
 /* advpwm-hal Settings */
 #define HAL_PWM_API_QUADRATURE_ENCODER
@@ -64,19 +64,20 @@
 
 /* timer-hal configs */
 #define HAL_TIMER_API_STOP_TIMER
-#define STEPPER_TIMER TIMER2
-#define STEPPER_TIMER_ISR timer2_isr
-#define STEPPER_TIMER_INTERRUPT TIMER2_INTERRUPT
+#define STEPPER_TIMER TIMER0
+#define STEPPER_TIMER_ISR timer0_isr
+#define STEPPER_TIMER_INTERRUPT TIMER0_INTERRUPT
+// timer 3 acts super weird. where it's fast at specific values and slow at others?!?!
 #define GLOBAL_TIMER TIMER3
 #define GLOBAL_TIMER_ISR timer3_isr
 #define GLOBAL_TIMER_INTERRUPT TIMER3_INTERRUPT
 
 /* Button HAL Defaults */
-#define BUTTON_COOLDOWN_PERIOD 400 // time in ms to stop reading button if pressed
+#define BUTTON_COOLDOWN_PERIOD 300 // time in ms to stop reading button if pressed
 #define ENCODER_COOLDOWN_PERIOD 4 // time in ms to stop reading encoder if pressed
 
 /* Stepper Motor HAL Defaults */
-#define DEFAULT_STEPPER_FREQUENCY 50
+#define DEFAULT_STEPPER_FREQUENCY 200
 #define STEPPER_CM_TO_STEPS 3200 //TODO: needs testing
 #define DEFAULT_STEP_NUM 3200 // one revolution
 

@@ -73,7 +73,6 @@ void application_step_control_mode(void) {
   inputs.encoder1_value.current_val = inputs.encoder1_value.get_func();
   inputs.encoder2_value.current_val = inputs.encoder2_value.get_func();
 
-
   switch(application_states.movement_state) {
 
     case MOVEMENT_STATE_IDLE:
@@ -92,8 +91,9 @@ void application_step_control_mode(void) {
 
       // Run Pause Button
       if(inputs.run_pause_button.current_val == BUTTON_PRESSED) {
-       stepper_move(&stepper_movement);
-       application_states.movement_state = MOVEMENT_STATE_RUN;
+        stepper_move(&stepper_movement);
+        application_states.movement_state = MOVEMENT_STATE_RUN;
+        display_update_application_state(application_states.movement_state);
       }
 
       // encoder1 button
@@ -172,52 +172,64 @@ void application_step_control_mode(void) {
       break;
 
     case MOVEMENT_STATE_RUN:
+      /* printf("Steps Moved: %lu \r", get_step_counter()); */
+      display_update_steps_moved(get_step_counter());
+
       if(inputs.stop_button.current_val == BUTTON_PRESSED) {
         stepper_stop();
-        // updating stepper steps in case it was changed by pausing
         stepper_set_steps(&stepper_movement, digit_array_to_uint32(application_states.step_value_digits, STEP_VALUE_DIGIT_NUM));
-        application_states.movement_state = MOVEMENT_STATE_IDLE;
 
-        printf("\nSTOPPING!\n");
+        application_states.movement_state = MOVEMENT_STATE_IDLE;
+        display_step_control_reset(&stepper_movement);
+        /* printf("\nSTOPPING!\n\n"); */
+        break;
       }
 
       if(!get_stepper_state()) {
+        stepper_set_steps(&stepper_movement, digit_array_to_uint32(application_states.step_value_digits, STEP_VALUE_DIGIT_NUM));
+
         application_states.movement_state = MOVEMENT_STATE_IDLE;
-        printf("\n\nFinished Stepper Movement\n");
+        display_step_control_reset(&stepper_movement);
+        /* printf("\n\nFinished Stepper Movement\n"); */
       }
 
       if(inputs.run_pause_button.current_val == BUTTON_PRESSED) {
         stepper_stop();
         stepper_set_steps(&stepper_movement, get_step_counter());
+
         application_states.movement_state = MOVEMENT_STATE_PAUSE;
-        printf("\n");
+        display_update_application_state(application_states.movement_state);
+        /* printf("\nStepper Motor Paused\n"); */
       }
 
-      // Show steps moved in Display
-
-      printf("Steps Moved: %lu \r", get_step_counter());
       break;
 
     case MOVEMENT_STATE_PAUSE:
+
       if(inputs.stop_button.current_val == BUTTON_PRESSED) {
         stepper_stop();
-        // updating stepper steps in case it was changed by pausing
         stepper_set_steps(&stepper_movement, digit_array_to_uint32(application_states.step_value_digits, STEP_VALUE_DIGIT_NUM));
-        application_states.movement_state = MOVEMENT_STATE_IDLE;
 
-        printf("\nSTOPPING!\n");
+        application_states.movement_state = MOVEMENT_STATE_IDLE;
+        display_step_control_reset(&stepper_movement);
+        /* printf("\nSTOPPING!\n\n"); */
+        break;
       }
 
       if(inputs.run_pause_button.current_val == BUTTON_PRESSED) {
         stepper_move(&stepper_movement);
+
         application_states.movement_state = MOVEMENT_STATE_RUN;
-        printf("\nResuming..\n\n");
+        display_update_application_state(application_states.movement_state);
+        /* printf("\nResuming..\n\n"); */
       }
 
-      printf("Stepper Motor Paused\r");
       break;
 
     case MOVEMENT_STATE_ERROR:
+
+      display_update_application_state(application_states.movement_state);
+
       break;
 
   }

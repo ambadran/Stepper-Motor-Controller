@@ -40,13 +40,6 @@ typedef enum {
   ENCODER_CONTROL,
 } control_mode_t;
 
-typedef enum {
-  MOVEMENT_STATE_IDLE,
-  MOVEMENT_STATE_RUN,
-  MOVEMENT_STATE_PAUSE,
-  MOVEMENT_STATE_ERROR
-} movement_state_t;
-
 typedef struct {
   control_mode_t control_mode;
   movement_state_t movement_state;

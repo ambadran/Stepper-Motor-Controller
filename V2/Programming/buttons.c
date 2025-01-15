@@ -26,7 +26,8 @@ void buttons_init(void) {
   stop_button.gpio.pinMode = GPIO_HIGH_IMPEDANCE_MODE,	
   /* stop_button.gpio.pinInterrupt = ENABLE_GPIO_PIN_INTERRUPT, */ 
   stop_button.gpio.pinInterrupt = DISABLE_GPIO_PIN_INTERRUPT, 
-  stop_button.gpio.interruptTrigger = GPIO_FALLING_EDGE, 
+  /* stop_button.gpio.interruptTrigger = GPIO_FALLING_EDGE, */ 
+  stop_button.gpio.interruptTrigger = GPIO_RISING_EDGE, 
   stop_button.gpio.wakeUpInterrupt = DISABLE_GPIO_PIN_WAKE_UP,
   stop_button.gpio.schmidtTrigger = ENABLE_SCHMIDT_TRIGGER,
   stop_button.gpio.internalPullUp = ENABLE_INTERNAL_PULL_UP,
@@ -85,8 +86,11 @@ void buttons_process(void) {
     if(buttons[i]->button_status == BUTTON_IDLE) {
 
       if(!gpioRead(&buttons[i]->gpio)) {
-        buttons[i]->reactivation_time = get_current_time() + BUTTON_COOLDOWN_PERIOD;
-        buttons[i]->button_status = BUTTON_PRESSED;
+        delay1ms(1); // waiting a bit and reading again just to be absolutely sure it's not noise
+        if(!gpioRead(&buttons[i]->gpio)) {
+          buttons[i]->reactivation_time = get_current_time() + BUTTON_COOLDOWN_PERIOD;
+          buttons[i]->button_status = BUTTON_PRESSED;
+        }
       }
 
     } else {
@@ -115,10 +119,14 @@ button_status_t get_encoder1_button_status(void) { return get_button_status(ENCO
 button_status_t get_encoder2_button_status(void) { return get_button_status(ENCODER2_BUTTON_IND); }
 
 /* INTERRUPT(STOP_BUTTON_PIN_ISR, STOP_BUTTON_PIN_INTERRUPT) { */
-  // Stop Stepper Motor and stop holding
-  /* stepper_stop(); */
 
-  // reset everything
-  /* application_reset(); */
+  /* if(get_button_status(STOP_BUTTON_IND)) { */
 
+    // Stop Stepper Motor and stop holding
+    /* stepper_stop(); */
+    // updating stepper steps in case it was changed by pausing
+    /* stepper_set_steps(&stepper_movement, digit_array_to_uint32(application_states.step_value_digits, STEP_VALUE_DIGIT_NUM)); */
+
+    // reset everything
+  /* } */
 /* } */

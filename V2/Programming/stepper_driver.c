@@ -37,16 +37,26 @@ void stepper_move(stepper_movement_t* stepper_movement) {
   gpioWrite(&stepper_enable_pin, STEPPER_ENABLE);
 
   // Timer init
-	startTimer(
-		STEPPER_TIMER, 
-		frequencyToSysclkDivisor(stepper_movement->frequency),
-		DISABLE_OUTPUT, 
-		ENABLE_INTERRUPT, 
-		FREE_RUNNING
-	);
+  TimerStatus timer_status = startTimer(
+                STEPPER_TIMER, 
+                frequencyToSysclkDivisor(stepper_movement->frequency),
+                DISABLE_OUTPUT, 
+                ENABLE_INTERRUPT, 
+                FREE_RUNNING
+              );
+
+  if (timer_status == TIMER_FREQUENCY_TOO_HIGH) {
+    printf("timer frequency too HIGH!!\n");
+    stepper_stop();
+  } else if (timer_status == TIMER_FREQUENCY_TOO_LOW) {
+    printf("timer frequency too LOW!!\n");
+    stepper_stop();
+  }
 }
 
 void stepper_stop(void) {
+
+  gpioWrite(&stepper_enable_pin, stepper_enable_after_move);
   stopTimer(STEPPER_TIMER);
   stepper_active = 0;
 }
@@ -85,8 +95,22 @@ INTERRUPT(STEPPER_TIMER_ISR, STEPPER_TIMER_INTERRUPT) {
 
   } else if (stepper_active) {
 
-    gpioWrite(&stepper_enable_pin, stepper_enable_after_move);
     stepper_stop();
+
+  }
+
+}
+
+void stepper_test(void) {
+  stepper_movement_t stepper_movement;
+  stepper_set_steps(&stepper_movement, 1000);
+
+  for (uint16_t i = 500 ; i<20000 ; i = i+100) {
+
+    stepper_set_freq(&stepper_movement, (uint32_t)i);
+    stepper_move(&stepper_movement);
+    printf("Moving at Freq: %d\n", i);
+    while(get_stepper_state());
 
   }
 

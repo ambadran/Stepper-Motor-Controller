@@ -1,8 +1,13 @@
 #include "project-defs.h"
 
 // Mappings stepper settings to strings to be displayed
-const uint8_t* STEPPER_ENABLE_STATUS_TO_CHAR[] = {" HOLD", " FREE"};
-const uint8_t* STEPPER_DIR_STATUS_TO_CHAR[] = {"CW ", "CCW"};
+const uint8_t* STEPPER_ENABLE_STATUS_TO_CHAR[5] = {" HOLD", " FREE"};
+const uint8_t* STEPPER_DIR_STATUS_TO_CHAR[3] = {"CW ", "CCW"};
+const uint8_t* MOVEMENT_STATE_TO_CHAR[] = {"      IDLE      ",
+                                           "Run:            ",
+                                           "Pause:",
+                                           "    Error!    "
+                                          };
 
 static LCDSerialLinkConfig lcdLink = {
   // E (SCLK)
@@ -28,10 +33,10 @@ void display_init(void) {
 void display_welcome_page(void) {
 
   lcdTxtClear(&lcdDevice);
-  lcdTxtPrintAt(&lcdDevice, 0, 3, "Stepper");
-  lcdTxtPrintAt(&lcdDevice, 1, 2, "Controller");
-  lcdTxtPrintAt(&lcdDevice, 3, 5, "V2.0");
-  delay1ms(1000);
+  lcdTxtPrintAt(&lcdDevice, 0, 4, "Stepper");
+  lcdTxtPrintAt(&lcdDevice, 1, 3, "Controller");
+  lcdTxtPrintAt(&lcdDevice, 2, 6, "V2.0 ");
+  delay1ms(1500);
 
 }
 
@@ -46,6 +51,7 @@ void display_step_control_reset(stepper_movement_t* stepper_movement) {
   display_update_stepper_frequency(FREQ_VALUE_DIGIT_NUM, stepper_movement->frequency);
   display_update_stepper_direction(stepper_movement->stepper_direction);
   display_update_stepper_enable_status(stepper_movement->stepper_enable_status);
+  display_update_application_state(MOVEMENT_STATE_IDLE);
 }
 
 void display_update_stepper_step(uint8_t digit_selected, uint32_t steps) {
@@ -66,6 +72,15 @@ void display_update_stepper_enable_status(stepper_enable_status_t stepper_enable
   lcdTxtPrintAt(&lcdDevice, 2, 10, STEPPER_ENABLE_STATUS_TO_CHAR[stepper_enable_status]);
 }
 
-void display_test(uint8_t num1, uint8_t* digits) {
-  lcdTxtPrintAt(&lcdDevice, 3, 0, "E%d: %d%d%d%d%d%d    ", num1, digits[0], digits[1], digits[2], digits[3], digits[4], digits[5]);
+void display_update_application_state(movement_state_t movement_state) {
+  lcdTxtPrintAt(&lcdDevice, 3, 0, MOVEMENT_STATE_TO_CHAR[movement_state]); 
 }
+
+static uint32_t step_report_next_time = 0;
+void display_update_steps_moved(uint32_t steps) {
+  if ((get_current_time() - step_report_next_time) >= STEP_REPORT_PERIOD) {
+    lcdTxtPrintAt(&lcdDevice, 3, 6, "%06lu ", steps);
+    step_report_next_time = get_current_time();
+  }
+}
+

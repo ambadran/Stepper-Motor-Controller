@@ -70,9 +70,12 @@ void encoders_init(void) {
 void encoders_process(void) {
   if((encoder1.encoder_status == ENCODER_IDLE)){
     if ((encoder1.prev_clk != gpioRead(&encoder1.clk_pin))) {
-      encoder1.prev_clk = gpioRead(&encoder1.clk_pin);
-      encoder1.reactivation_time = get_current_time() + ENCODER_COOLDOWN_PERIOD;
-      encoder1.encoder_status = ENCODER_TRIGGERED;
+      delay1ms(1); // waiting a bit and reading again just to be absolutely sure it's not noise
+      if ((encoder1.prev_clk != gpioRead(&encoder1.clk_pin))) {
+        encoder1.prev_clk = gpioRead(&encoder1.clk_pin);
+        encoder1.reactivation_time = get_current_time() + ENCODER_COOLDOWN_PERIOD;
+        encoder1.encoder_status = ENCODER_TRIGGERED;
+      }
     }
 
   } else if (get_current_time() >= encoder1.reactivation_time){
@@ -85,9 +88,12 @@ void encoders_process(void) {
 
   if((encoder2.encoder_status == ENCODER_IDLE)){
     if ((encoder2.prev_clk != gpioRead(&encoder2.clk_pin))) {
-      encoder2.prev_clk = gpioRead(&encoder2.clk_pin);
-      encoder2.reactivation_time = get_current_time() + ENCODER_COOLDOWN_PERIOD;
-      encoder2.encoder_status = ENCODER_TRIGGERED;
+      delay1ms(1); // waiting a bit and reading again just to be absolutely sure it's not noise
+      if ((encoder2.prev_clk != gpioRead(&encoder2.clk_pin))) {
+        encoder2.prev_clk = gpioRead(&encoder2.clk_pin);
+        encoder2.reactivation_time = get_current_time() + ENCODER_COOLDOWN_PERIOD;
+        encoder2.encoder_status = ENCODER_TRIGGERED;
+      }
     }
 
   } else if (get_current_time() >= encoder2.reactivation_time){

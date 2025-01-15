@@ -28,6 +28,7 @@ void main() {
   delay1ms(500);
   application_reset();
 
+  // Main Routine
 	while (1) {
     encoders_process();  // getting latest encoder readings
     buttons_process();  // getting latest button readings
@@ -37,4 +38,3 @@ void main() {
 	}
 
 }
-// Main Routine
