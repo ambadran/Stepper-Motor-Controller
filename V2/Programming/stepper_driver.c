@@ -10,8 +10,7 @@ static volatile uint32_t step_counter = 0;
 static volatile __bit stepper_active = 0;
 static stepper_enable_status_t stepper_enable_after_move;
 
-void stepper_motor_init(void) {
-
+void stepper_init(void) {
   // GPIOs init
   gpioConfigure(&stepper_enable_pin);
   gpioWrite(&stepper_enable_pin, STEPPER_DISABLE);
@@ -22,15 +21,14 @@ void stepper_motor_init(void) {
 
 }
 
-void stepper_motor_reset_movement(stepper_movement_t* stepper_movement) {
+void stepper_reset_movement(stepper_movement_t* stepper_movement) {
   stepper_movement->stepper_enable_status = STEPPER_DISABLE;
   stepper_movement->stepper_direction = STEPPER_CLOCKWISE_DIR;
   stepper_movement->frequency = DEFAULT_STEPPER_FREQUENCY;
   stepper_movement->steps = DEFAULT_STEP_NUM;
 }
 
-void stepper_motor_move(stepper_movement_t* stepper_movement) {
-
+void stepper_move(stepper_movement_t* stepper_movement) {
   stepper_enable_after_move = stepper_movement->stepper_enable_status;
   gpioWrite(&stepper_dir_pin, stepper_movement->stepper_direction);
   step_counter = stepper_movement->steps;
@@ -46,7 +44,11 @@ void stepper_motor_move(stepper_movement_t* stepper_movement) {
 		ENABLE_INTERRUPT, 
 		FREE_RUNNING
 	);
+}
 
+void stepper_stop(void) {
+  stopTimer(STEPPER_TIMER);
+  stepper_active = 0;
 }
 
 void stepper_set_steps(stepper_movement_t* stepper_movement, uint32_t steps) {
@@ -69,12 +71,10 @@ void stepper_set_dir(stepper_movement_t* stepper_movement, stepper_direction_t s
   gpioWrite(&stepper_dir_pin, stepper_direction);
 }
 
-void stepper_stop_motor(void) { 
-  stopTimer(STEPPER_TIMER); 
-  stepper_active = 0;
-}
+uint32_t get_step_counter(void) { return step_counter; }
 
 __bit get_stepper_state(void) { return stepper_active; }
+
 
 INTERRUPT(STEPPER_TIMER_ISR, STEPPER_TIMER_INTERRUPT) {
 
@@ -86,7 +86,7 @@ INTERRUPT(STEPPER_TIMER_ISR, STEPPER_TIMER_INTERRUPT) {
   } else if (stepper_active) {
 
     gpioWrite(&stepper_enable_pin, stepper_enable_after_move);
-    stepper_stop_motor();
+    stepper_stop();
 
   }
 

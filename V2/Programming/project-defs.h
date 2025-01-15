@@ -47,6 +47,10 @@
 #define ENCODER1_DT_PORT GPIO_PORT5
 #define ENCODER1_DT_PIN GPIO_PIN4
 
+// external pin INTERRUPTS
+#define STOP_BUTTON_PIN_ISR extint2_isr
+#define STOP_BUTTON_PIN_INTERRUPT EXTINT2_INTERRUPT
+
 /* advpwm-hal Settings */
 #define HAL_PWM_API_QUADRATURE_ENCODER
 // For PWM_COUNTER_A, we use PWM1P and PWM2P on P1.0 and P5.4 (pin switch = 0).

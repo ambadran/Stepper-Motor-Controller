@@ -24,8 +24,9 @@ void buttons_init(void) {
   stop_button.gpio.pin = STOP_BUTTON_PIN, 
   stop_button.gpio.count = 1, 
   stop_button.gpio.pinMode = GPIO_HIGH_IMPEDANCE_MODE,	
+  /* stop_button.gpio.pinInterrupt = ENABLE_GPIO_PIN_INTERRUPT, */ 
   stop_button.gpio.pinInterrupt = DISABLE_GPIO_PIN_INTERRUPT, 
-  stop_button.gpio.interruptTrigger = GPIO_RISING_EDGE, 
+  stop_button.gpio.interruptTrigger = GPIO_FALLING_EDGE, 
   stop_button.gpio.wakeUpInterrupt = DISABLE_GPIO_PIN_WAKE_UP,
   stop_button.gpio.schmidtTrigger = ENABLE_SCHMIDT_TRIGGER,
   stop_button.gpio.internalPullUp = ENABLE_INTERNAL_PULL_UP,
@@ -113,4 +114,11 @@ button_status_t get_stop_button_status(void) { return get_button_status(STOP_BUT
 button_status_t get_encoder1_button_status(void) { return get_button_status(ENCODER1_BUTTON_IND); }
 button_status_t get_encoder2_button_status(void) { return get_button_status(ENCODER2_BUTTON_IND); }
 
+/* INTERRUPT(STOP_BUTTON_PIN_ISR, STOP_BUTTON_PIN_INTERRUPT) { */
+  // Stop Stepper Motor and stop holding
+  /* stepper_stop(); */
 
+  // reset everything
+  /* application_reset(); */
+
+/* } */

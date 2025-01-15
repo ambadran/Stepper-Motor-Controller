@@ -56,7 +56,7 @@ typedef struct {
   uint8_t freq_value_digits[FREQ_VALUE_DIGIT_NUM];
 } application_states_t;
 
-void application_init(void);
+void application_reset(void);
 void application_process_current_page(void);
 void application_step_control_mode(void);
 void application_encoder_control_mode (void);

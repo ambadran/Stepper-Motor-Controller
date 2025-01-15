@@ -49,10 +49,12 @@ void display_step_control_reset(stepper_movement_t* stepper_movement) {
 }
 
 void display_update_stepper_step(uint8_t digit_selected, uint32_t steps) {
+  //TODO: show a cursor or sth on the selected digit
   lcdTxtPrintAt(&lcdDevice, 0, 6, "%06lu ", steps);
 }
 
 void display_update_stepper_frequency(uint8_t digit_selected, uint32_t frequency) {
+  //TODO: show a cursor or sth on the selected digit
   lcdTxtPrintAt(&lcdDevice, 1, 6, "%06lu ", frequency);
 }
 
