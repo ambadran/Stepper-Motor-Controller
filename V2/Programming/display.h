@@ -1,7 +1,7 @@
 #ifndef DISPLAY_H
 #define DISPLAY_H
 
-#define STEP_REPORT_PERIOD 300
+#define STEP_REPORT_PERIOD 200
 
 typedef enum {
   MOVEMENT_STATE_IDLE = 0,
@@ -12,6 +12,7 @@ typedef enum {
 
 void display_init(void);
 void display_welcome_page(void);
+/* void display_step_control(movement_state_t movement_state, stepper_movement_t* stepper_movement); */
 void display_step_control_reset(stepper_movement_t* stepper_movement);
 void display_update_stepper_step(uint8_t digit_selected, uint32_t steps);
 void display_update_stepper_frequency(uint8_t digit_selected, uint32_t frequency);

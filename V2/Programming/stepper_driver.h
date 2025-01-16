@@ -28,6 +28,6 @@ void stepper_set_enable(stepper_movement_t* stepper_movement, stepper_enable_sta
 void stepper_set_dir(stepper_movement_t* stepper_movement, stepper_direction_t stepper_direction);
 uint32_t get_step_counter(void);
 __bit get_stepper_state(void);
-void stepper_test(void);
+/* void stepper_test(void); */
 
 #endif

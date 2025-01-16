@@ -234,6 +234,8 @@ void application_step_control_mode(void) {
 
   }
 
+  /* display_step_control(application_states.movement_state, &stepper_movement); */
+
 }
 
 void application_encoder_control_mode (void) {

@@ -101,17 +101,18 @@ INTERRUPT(STEPPER_TIMER_ISR, STEPPER_TIMER_INTERRUPT) {
 
 }
 
-void stepper_test(void) {
-  stepper_movement_t stepper_movement;
-  stepper_set_steps(&stepper_movement, 1000);
+/* void stepper_test(void) { */
+/*   stepper_movement_t stepper_movement; */
+/*   stepper_set_steps(&stepper_movement, 1000); */
 
-  for (uint16_t i = 500 ; i<20000 ; i = i+100) {
+/*   for (uint16_t i = 500 ; i<20000 ; i = i+100) { */
 
-    stepper_set_freq(&stepper_movement, (uint32_t)i);
-    stepper_move(&stepper_movement);
-    printf("Moving at Freq: %d\n", i);
-    while(get_stepper_state());
+/*     stepper_set_freq(&stepper_movement, (uint32_t)i); */
+/*     stepper_move(&stepper_movement); */
+/*     printf("Moving at Freq: %d\n", i); */
+/*     while(get_stepper_state()); */
 
-  }
+/*   } */
 
-}
+/* } */
+

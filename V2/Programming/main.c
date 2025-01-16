@@ -28,6 +28,8 @@ void main() {
   delay1ms(500);
   application_reset();
 
+  stepper_movement_t stepper_movement;
+
   // Main Routine
 	while (1) {
     encoders_process();  // getting latest encoder readings
