@@ -74,12 +74,24 @@
 
 /* Button HAL Defaults */
 #define BUTTON_COOLDOWN_PERIOD 300 // time in ms to stop reading button if pressed
+#define ENCODER_INITIAL_DELAY 1
 #define ENCODER_COOLDOWN_PERIOD 4 // time in ms to stop reading encoder if pressed
 
 /* Stepper Motor HAL Defaults */
-#define DEFAULT_STEPPER_FREQUENCY 200
-#define STEPPER_CM_TO_STEPS 3200 //TODO: needs testing
+#define USER_FREQ_RANGE_TO_STEPPER_FREQ_RANGE 200 // since 20000/100 equals 200
+
+#define STEP_VALUE_DIGIT_NUM 6 // 000000
+#define FREQ_VALUE_DIGIT_NUM 3 // 000
+#define DEFAULT_STEPPER_FREQUENCY 2000
+#define DEFAULT_USER_FREQUENCY (uint8_t)DEFAULT_ENCODER_CONTROL_FREQ/USER_FREQ_RANGE_TO_STEPPER_FREQ_RANGE
 #define DEFAULT_STEP_NUM 3200 // one revolution
+#define DEFAULT_ANGLE_TO_STEPS 8.89                              
+#define DEFAULT_ENCODER_CONTROL_FREQ 7000
+
+#define STEPPER_MIN_FREQ 50
+#define STEPPER_MAX_FREQ 20000
+#define USER_MIN_FREQ 1
+#define USER_MAX_FREQ 100
 
 /* includes */
 #include <STC/8H8KxxU/SKDIP28.h>

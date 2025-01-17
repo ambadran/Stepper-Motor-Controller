@@ -16,6 +16,7 @@ typedef struct {
   stepper_direction_t stepper_direction;
   uint32_t frequency;
   uint32_t steps;
+  float angle_to_steps;
 } stepper_movement_t;
 
 void stepper_init(void);

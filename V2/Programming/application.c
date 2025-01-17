@@ -48,10 +48,15 @@ void application_reset(void) {
   // Initializing Application States
   application_states.control_mode = STEP_CONTROL;
   application_states.movement_state = MOVEMENT_STATE_IDLE;
-  set_digit_array_from_uint32(application_states.step_value_digits, STEP_VALUE_DIGIT_NUM, stepper_movement.steps);
-  set_digit_array_from_uint32(application_states.freq_value_digits, STEP_VALUE_DIGIT_NUM, stepper_movement.frequency);
+
   application_states.step_value_digit_pointer = STEP_VALUE_DIGIT_NUM-1;
+  set_digit_array_from_uint32(application_states.step_value_digits, STEP_VALUE_DIGIT_NUM, stepper_movement.steps);
+
   application_states.freq_value_digit_pointer = FREQ_VALUE_DIGIT_NUM-1;
+  set_digit_array_from_uint32(application_states.freq_value_digits, STEP_VALUE_DIGIT_NUM, stepper_movement.frequency);
+
+  application_states.encoder_control_value = 0;
+  application_states.prev_step_control_freq_value = stepper_movement.frequency;
 
   // Welcome Page
   display_welcome_page();
@@ -77,6 +82,24 @@ void application_step_control_mode(void) {
 
     case MOVEMENT_STATE_IDLE:
       /* Processing Inputs */
+
+      // Control Mode Switch
+      if(inputs.control_mode_switch.current_val != application_states.control_mode) {
+        application_states.control_mode = ENCODER_CONTROL;
+        application_states.encoder_control_value = 0; // always resets
+
+        inputs.encoder1_value.current_val = 0;
+        encoder1_count_set(0);
+
+        inputs.encoder2_value.current_val = get_most_significant_digit_float(stepper_movement.angle_to_steps);
+        encoder2_count_set(get_most_significant_digit_float(stepper_movement.angle_to_steps));
+
+        application_states.prev_step_control_freq_value = stepper_movement.frequency;
+        stepper_set_freq(&stepper_movement, DEFAULT_ENCODER_CONTROL_FREQ);
+        display_encoder_control_reset(&stepper_movement);
+        return;
+      }
+
       // Stepper Direction Switch
       if(inputs.cw_ccw_switch.current_val != stepper_movement.stepper_direction) {
         stepper_set_dir(&stepper_movement, UINT8_TO_STEPPER_DIR[inputs.cw_ccw_switch.current_val]);
@@ -91,9 +114,11 @@ void application_step_control_mode(void) {
 
       // Run Pause Button
       if(inputs.run_pause_button.current_val == BUTTON_PRESSED) {
-        stepper_move(&stepper_movement);
         application_states.movement_state = MOVEMENT_STATE_RUN;
         display_update_application_state(application_states.movement_state);
+
+        stepper_move(&stepper_movement);
+        break;
       }
 
       // encoder1 button
@@ -163,8 +188,23 @@ void application_step_control_mode(void) {
         // updating the digit array
         application_states.freq_value_digits[application_states.freq_value_digit_pointer] = (uint8_t)inputs.encoder2_value.current_val;
 
-        // updating the stepper_movement
         stepper_set_freq(&stepper_movement, digit_array_to_uint32(application_states.freq_value_digits, FREQ_VALUE_DIGIT_NUM));
+
+        // constraining the current encoder value to not exceed user frequency range
+        /* uint32_t test_val; */
+        /* value_state_t value_state = digit_array_user_freq_to_uint32(&test_val, application_states.freq_value_digits); */
+        /* if (value_state == VALUE_OUT_OF_MIN_RANGE) { */
+        /*   //TODO: I don't know if this will cover all cases */
+        /*   encoder2_count_set(1); */
+        /*   inputs.encoder2_value.current_val = 1; */
+        
+
+        /* } else if (value_state == VALUE_OUT_OF_MAX_RANGE){ */
+        /*   //TODO: I don't know if this will cover all cases */
+        /*   encoder2_count_set(1); //TODO: I don't know if this will cover all cases */
+        /*   inputs.encoder2_value.current_val = 1; */
+
+        /* } */
 
         // updating display with step values
         display_update_stepper_frequency(application_states.freq_value_digit_pointer, stepper_movement.frequency);
@@ -182,6 +222,7 @@ void application_step_control_mode(void) {
         application_states.movement_state = MOVEMENT_STATE_IDLE;
         display_step_control_reset(&stepper_movement);
         /* printf("\nSTOPPING!\n\n"); */
+
         break;
       }
 
@@ -191,6 +232,8 @@ void application_step_control_mode(void) {
         application_states.movement_state = MOVEMENT_STATE_IDLE;
         display_step_control_reset(&stepper_movement);
         /* printf("\n\nFinished Stepper Movement\n"); */
+
+        break;
       }
 
       if(inputs.run_pause_button.current_val == BUTTON_PRESSED) {
@@ -200,6 +243,8 @@ void application_step_control_mode(void) {
         application_states.movement_state = MOVEMENT_STATE_PAUSE;
         display_update_application_state(application_states.movement_state);
         /* printf("\nStepper Motor Paused\n"); */
+
+        break;
       }
 
       break;
@@ -217,11 +262,13 @@ void application_step_control_mode(void) {
       }
 
       if(inputs.run_pause_button.current_val == BUTTON_PRESSED) {
-        stepper_move(&stepper_movement);
-
         application_states.movement_state = MOVEMENT_STATE_RUN;
         display_update_application_state(application_states.movement_state);
+
+        stepper_move(&stepper_movement);
         /* printf("\nResuming..\n\n"); */
+
+        break;
       }
 
       break;
@@ -233,11 +280,64 @@ void application_step_control_mode(void) {
       break;
 
   }
-
-  /* display_step_control(application_states.movement_state, &stepper_movement); */
-
 }
 
 void application_encoder_control_mode (void) {
+  /* Updating buttons and encoder values */
+  inputs.run_pause_button.current_val = inputs.run_pause_button.get_func();
+  inputs.stop_button.current_val = inputs.stop_button.get_func();
+  inputs.encoder1_button.current_val = inputs.encoder1_button.get_func();
+  inputs.encoder2_button.current_val = inputs.encoder2_button.get_func();
+  inputs.cw_ccw_switch.current_val = inputs.cw_ccw_switch.get_func();
+  inputs.hold_free_switch.current_val = inputs.hold_free_switch.get_func();
+  inputs.control_mode_switch.current_val = inputs.control_mode_switch.get_func();
+  inputs.encoder1_value.current_val = inputs.encoder1_value.get_func();
+  inputs.encoder2_value.current_val = inputs.encoder2_value.get_func();
+
+
+  /* Processing Inputs */
+  // Control Mode Switch
+  if(inputs.control_mode_switch.current_val != application_states.control_mode) {
+    application_states.control_mode = STEP_CONTROL;
+
+    inputs.encoder1_value.current_val = get_most_significant_digit(stepper_movement.steps);
+    encoder1_count_set(get_most_significant_digit(stepper_movement.steps));
+
+    inputs.encoder2_value.current_val = get_most_significant_digit(stepper_movement.frequency);
+    encoder2_count_set(get_most_significant_digit(stepper_movement.frequency));
+
+    stepper_set_freq(&stepper_movement, application_states.prev_step_control_freq_value);
+    display_step_control_reset(&stepper_movement);
+    return;
+  }
+
+  // Stepper enable Status Switch
+  if(inputs.hold_free_switch.current_val != stepper_movement.stepper_enable_status) {
+    stepper_set_enable(&stepper_movement, UINT8_TO_STEPPER_EN_STAT[inputs.hold_free_switch.current_val]);
+    display_update_stepper_enable_status(stepper_movement.stepper_enable_status);
+  }
+
+  // Encoder1 value
+  if(application_states.encoder_control_value != inputs.encoder1_value.current_val) {
+
+    // deciding Direction
+    application_states.encoder_control_value -= inputs.encoder1_value.current_val;
+    if(application_states.encoder_control_value < 0) {
+      stepper_set_dir(&stepper_movement, STEPPER_CLOCKWISE_DIR);
+      stepper_set_steps(&stepper_movement, (uint32_t)(-50*application_states.encoder_control_value));
+
+    } else {
+      stepper_set_dir(&stepper_movement, STEPPER_ANTICLOCKWISE_DIR);
+      stepper_set_steps(&stepper_movement, (uint32_t)(50*application_states.encoder_control_value));
+
+    }
+
+    application_states.encoder_control_value = inputs.encoder1_value.current_val;
+    display_update_encoder_value(application_states.encoder_control_value);
+
+    stepper_move(&stepper_movement);
+    while(get_stepper_state());
+
+  }
 
 }

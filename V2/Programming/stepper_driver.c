@@ -26,6 +26,7 @@ void stepper_reset_movement(stepper_movement_t* stepper_movement) {
   stepper_movement->stepper_direction = STEPPER_CLOCKWISE_DIR;
   stepper_movement->frequency = DEFAULT_STEPPER_FREQUENCY;
   stepper_movement->steps = DEFAULT_STEP_NUM;
+  stepper_movement->angle_to_steps = DEFAULT_ANGLE_TO_STEPS;
 }
 
 void stepper_move(stepper_movement_t* stepper_movement) {
