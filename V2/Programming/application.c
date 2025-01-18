@@ -408,6 +408,11 @@ void application_encoder_control_mode (void) {
     // updating the actual value
     application_states.deg_step_value = set_float_digit(application_states.deg_step_value, application_states.deg_step_pointer, application_states.deg_step_digits[application_states.deg_step_pointer]);
 
+    // re-assigning the digits array and the encoders to the actual rounded float
+    set_float_digit_array(application_states.deg_step_digits, application_states.deg_step_value);
+    inputs.encoder2_value.current_val = (int16_t)application_states.deg_step_digits[application_states.deg_step_pointer];
+    encoder2_count_set(inputs.encoder2_value.current_val);
+
     // Contraining range
     if (application_states.deg_step_value <= 0) {
       // this will cause divide by 0 error when steps_to_angle()
