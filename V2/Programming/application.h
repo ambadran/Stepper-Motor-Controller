@@ -41,14 +41,19 @@ typedef struct {
   control_mode_t control_mode;
   movement_state_t movement_state;
 
-  int8_t step_value_digit_pointer;
-  uint8_t step_value_digits[STEP_VALUE_DIGIT_NUM];
+  int8_t angle_digit_pointer;  // to decide what digit are we editing 
+  uint8_t angle_digits[ANGLE_VALUE_DIGIT_NUM]; // so that polling digits is MUCH FASTER!
+  uint32_t angle_value; // the actual value
 
-  int8_t freq_value_digit_pointer;
-  uint8_t freq_value_digits[FREQ_VALUE_DIGIT_NUM];
+  int8_t speed_digit_pointer;  // to decide what digit are we editing 
+  uint8_t speed_digits[SPEED_VALUE_DIGIT_NUM];  // so that polling digits is MUCH FASTER!
+  uint8_t speed_value;  // the actual value
 
   int16_t encoder_control_value;
-  uint32_t prev_step_control_freq_value;
+
+  int8_t deg_step_pointer;
+  uint8_t deg_step_digits[DEG_STEP_DIGIT_NUM];
+  float deg_step_value;
 } application_states_t;
 
 void application_reset(void);

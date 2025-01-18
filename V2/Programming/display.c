@@ -44,24 +44,24 @@ void display_welcome_page(void) {
 
 void display_step_control_reset(stepper_movement_t* stepper_movement) {
   lcdTxtClear(&lcdDevice);
-  display_update_stepper_step(STEP_VALUE_DIGIT_NUM, stepper_movement->steps);
-  display_update_stepper_frequency(FREQ_VALUE_DIGIT_NUM, stepper_movement->frequency);
+  display_update_stepper_angle(0, steps_to_angle(stepper_movement));
+  display_update_stepper_speed(0, freq_to_speed(stepper_movement));
   display_update_stepper_direction(stepper_movement->stepper_direction);
   display_update_stepper_enable_status(stepper_movement->stepper_enable_status);
   display_update_application_state(MOVEMENT_STATE_IDLE);
 }
 
-void display_update_stepper_step(uint8_t digit_selected, uint32_t steps) {
+void display_update_stepper_angle(uint8_t digit_selected, uint32_t angle) {
   //TODO: show a cursor or sth on the selected digit
   EA = 0;
-  lcdTxtPrintAt(&lcdDevice, 0, 0, "Steps: %06lu ", steps);
+  lcdTxtPrintAt(&lcdDevice, 0, 0, "Degrees: %05lu ", angle);
   EA = 1;
 }
 
-void display_update_stepper_frequency(uint8_t digit_selected, uint32_t frequency) {
+void display_update_stepper_speed(uint8_t digit_selected, uint8_t speed) {
   //TODO: show a cursor or sth on the selected digit
   EA = 0;
-  lcdTxtPrintAt(&lcdDevice, 1, 0, "Freq:  %06lu ", frequency);
+  lcdTxtPrintAt(&lcdDevice, 1, 0, "Speed:  %03d ", speed);
   EA = 1;
 }
 
@@ -83,12 +83,12 @@ void display_update_application_state(movement_state_t movement_state) {
   EA = 1;
 }
 
-void display_update_steps_moved(uint32_t steps) {
+void display_update_angles_moved(stepper_movement_t* stepper_movement) {
   if ((get_current_time() - step_report_next_time) >= STEP_REPORT_PERIOD) {
     EA = 0; // IT'S EXTREMEMLY IMPORTANT TO NOT DISTURB THE SIGNAL SENDING PROCESS
             // took me 3 days to understand the problem was the stepper INTERRUPTS
             // caused havoc when communication with the display ;(
-    lcdTxtPrintAt(&lcdDevice, 3, 6, "%06lu ", steps);
+    lcdTxtPrintAt(&lcdDevice, 3, 7, " %lu ", round((float)get_step_counter()/stepper_movement->angle_to_steps));
     EA = 1;
     step_report_next_time = get_current_time();
   }
@@ -96,7 +96,7 @@ void display_update_steps_moved(uint32_t steps) {
 
 void display_encoder_control_reset(stepper_movement_t* stepper_movement) {
   lcdTxtClear(&lcdDevice);
-  display_update_encoder_value(0);
+  display_update_encoder_value(0); // always resets to 0
   display_update_angle_to_steps_value(stepper_movement->angle_to_steps);
   display_update_stepper_enable_status(stepper_movement->stepper_enable_status);
 }
@@ -110,6 +110,6 @@ void display_update_encoder_value(int16_t value) {
 void display_update_angle_to_steps_value(float value) {
   uint8_t int_part = (uint8_t)value;
   EA = 0;
-  lcdTxtPrintAt(&lcdDevice, 1, 0, "Deg-Step: %d.%02d ", int_part, (uint16_t)((value-int_part)*100));
+  lcdTxtPrintAt(&lcdDevice, 1, 0, "Deg-Step: %03d.%02d", int_part, (uint16_t)((value-int_part)*100));
   EA = 1;
 }

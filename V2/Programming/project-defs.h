@@ -78,20 +78,23 @@
 #define ENCODER_COOLDOWN_PERIOD 4 // time in ms to stop reading encoder if pressed
 
 /* Stepper Motor HAL Defaults */
-#define USER_FREQ_RANGE_TO_STEPPER_FREQ_RANGE 200 // since 20000/100 equals 200
+#define USER_FREQ_TO_STEPPER_FREQ 200 // since 20000/100 equals 200
 
-#define STEP_VALUE_DIGIT_NUM 6 // 000000
-#define FREQ_VALUE_DIGIT_NUM 3 // 000
-#define DEFAULT_STEPPER_FREQUENCY 2000
-#define DEFAULT_USER_FREQUENCY (uint8_t)DEFAULT_ENCODER_CONTROL_FREQ/USER_FREQ_RANGE_TO_STEPPER_FREQ_RANGE
+#define ANGLE_VALUE_DIGIT_NUM 5 // 000000
+#define SPEED_VALUE_DIGIT_NUM 3 // 000
+
 #define DEFAULT_STEP_NUM 3200 // one revolution
+#define DEFAULT_STEPPER_FREQUENCY 2000
 #define DEFAULT_ANGLE_TO_STEPS 8.89                              
+
 #define DEFAULT_ENCODER_CONTROL_FREQ 7000
 
 #define STEPPER_MIN_FREQ 50
 #define STEPPER_MAX_FREQ 20000
 #define USER_MIN_FREQ 1
 #define USER_MAX_FREQ 100
+
+#define DEG_STEP_DIGIT_NUM 5 // 000.00
 
 /* includes */
 #include <STC/8H8KxxU/SKDIP28.h>
@@ -107,12 +110,12 @@
 #include <serial-console.h>
 #include <timer-hal.h>
 #include "global_timer.h"
-#include "nuts_bolts.h"
 #include "stepper_driver.h"
 #include "encoder.h"
 #include "buttons.h"
 #include "switch.h"
 #include "display.h"
+#include "nuts_bolts.h"
 #include "application.h"
 
 #endif

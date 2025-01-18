@@ -62,12 +62,12 @@ void stepper_stop(void) {
   stepper_active = 0;
 }
 
-void stepper_set_steps(stepper_movement_t* stepper_movement, uint32_t steps) {
-  stepper_movement->steps = steps;
+void stepper_set_angle_value(stepper_movement_t* stepper_movement, uint32_t angle_value) {
+  stepper_movement->steps = (uint32_t)((float)angle_value*stepper_movement->angle_to_steps);
 }
 
-void stepper_set_freq(stepper_movement_t* stepper_movement, uint32_t frequency) { 
-  stepper_movement->frequency = frequency; 
+void stepper_set_speed(stepper_movement_t* stepper_movement, uint8_t percentage) {
+  stepper_movement->frequency = percentage*USER_FREQ_TO_STEPPER_FREQ;
 }
 
 void stepper_set_enable(stepper_movement_t* stepper_movement, stepper_enable_status_t stepper_enable_status) {
@@ -86,6 +86,13 @@ uint32_t get_step_counter(void) { return step_counter; }
 
 __bit get_stepper_state(void) { return stepper_active; }
 
+uint32_t steps_to_angle(stepper_movement_t* stepper_movement) { 
+  return round((float)stepper_movement->steps/stepper_movement->angle_to_steps);
+}
+
+uint8_t freq_to_speed(stepper_movement_t* stepper_movement) {
+  return (uint8_t)(stepper_movement->frequency/USER_FREQ_TO_STEPPER_FREQ); 
+}
 
 INTERRUPT(STEPPER_TIMER_ISR, STEPPER_TIMER_INTERRUPT) {
 

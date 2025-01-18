@@ -35,11 +35,9 @@ void application_reset(void) {
   inputs.cw_ccw_switch.get_func = get_cw_ccw_switch_switch_status;
   inputs.control_mode_switch.current_val = SWITCH_OFF;
   inputs.control_mode_switch.get_func = get_control_mode_switch_status;
-  // first digit of default step value
-  inputs.encoder1_value.current_val = get_most_significant_digit(DEFAULT_STEP_NUM);
+  inputs.encoder1_value.current_val = 0; // will be set with final digit of default later
   inputs.encoder1_value.get_func = get_encoder1_count;
-  // first digit of default frequency value
-  inputs.encoder2_value.current_val = get_most_significant_digit(DEFAULT_STEPPER_FREQUENCY);
+  inputs.encoder2_value.current_val = 0; // will be set with final digit of default later
   inputs.encoder2_value.get_func = get_encoder2_count;
 
   // Initializing Output Handler
@@ -49,14 +47,24 @@ void application_reset(void) {
   application_states.control_mode = STEP_CONTROL;
   application_states.movement_state = MOVEMENT_STATE_IDLE;
 
-  application_states.step_value_digit_pointer = STEP_VALUE_DIGIT_NUM-1;
-  set_digit_array_from_uint32(application_states.step_value_digits, STEP_VALUE_DIGIT_NUM, stepper_movement.steps);
+  application_states.angle_digit_pointer = 0;
+  set_digit_array(application_states.angle_digits, steps_to_angle(&stepper_movement));
+  application_states.angle_value = steps_to_angle(&stepper_movement);
+  inputs.encoder1_value.current_val = (int16_t)application_states.angle_digits[0];
+  encoder1_count_set(inputs.encoder1_value.current_val);
 
-  application_states.freq_value_digit_pointer = FREQ_VALUE_DIGIT_NUM-1;
-  set_digit_array_from_uint32(application_states.freq_value_digits, STEP_VALUE_DIGIT_NUM, stepper_movement.frequency);
+  application_states.speed_digit_pointer = 0;
+  set_digit_array(application_states.speed_digits, freq_to_speed(&stepper_movement));
+  application_states.speed_value = freq_to_speed(&stepper_movement);
+  inputs.encoder2_value.current_val = (int16_t)application_states.speed_digits[0];
+  encoder2_count_set(inputs.encoder2_value.current_val);
 
   application_states.encoder_control_value = 0;
-  application_states.prev_step_control_freq_value = stepper_movement.frequency;
+
+  application_states.deg_step_pointer = 0;
+  set_float_digit_array(application_states.deg_step_digits, stepper_movement.angle_to_steps);
+  application_states.deg_step_value = stepper_movement.angle_to_steps;
+  // Will set initial encoder values upon control mode change
 
   // Welcome Page
   display_welcome_page();
@@ -91,11 +99,10 @@ void application_step_control_mode(void) {
         inputs.encoder1_value.current_val = 0;
         encoder1_count_set(0);
 
-        inputs.encoder2_value.current_val = get_most_significant_digit_float(stepper_movement.angle_to_steps);
-        encoder2_count_set(get_most_significant_digit_float(stepper_movement.angle_to_steps));
+        inputs.encoder2_value.current_val = (int16_t)application_states.deg_step_digits[application_states.deg_step_pointer];
+        encoder2_count_set(inputs.encoder2_value.current_val);
 
-        application_states.prev_step_control_freq_value = stepper_movement.frequency;
-        stepper_set_freq(&stepper_movement, DEFAULT_ENCODER_CONTROL_FREQ);
+        stepper_movement.steps = DEFAULT_ENCODER_CONTROL_FREQ;
         display_encoder_control_reset(&stepper_movement);
         return;
       }
@@ -124,33 +131,35 @@ void application_step_control_mode(void) {
       // encoder1 button
       if(inputs.encoder1_button.current_val == BUTTON_PRESSED) {
         // Incrementing the step digit pointer
-        application_states.step_value_digit_pointer--;
+        application_states.angle_digit_pointer++;
 
         // constraining it to the number of digits available
-        if(application_states.step_value_digit_pointer < 0) {
-          application_states.step_value_digit_pointer = STEP_VALUE_DIGIT_NUM-1;
+        if(application_states.angle_digit_pointer >= ANGLE_VALUE_DIGIT_NUM) {
+          application_states.angle_digit_pointer = 0;
         }
 
         // setting the encoder to the value of the next digit
-        encoder1_count_set((int16_t)application_states.step_value_digits[application_states.step_value_digit_pointer]);
+        inputs.encoder1_value.current_val = (int16_t)application_states.angle_digits[application_states.angle_digit_pointer];
+        encoder1_count_set(inputs.encoder1_value.current_val);
       }
 
       // encoder2 button
       if(inputs.encoder2_button.current_val == BUTTON_PRESSED) {
         // Incrementing the freq digit pointer
-        application_states.freq_value_digit_pointer--;
+        application_states.speed_digit_pointer++;
 
         // constraining it to the number of digits available
-        if(application_states.freq_value_digit_pointer < 0) {
-          application_states.freq_value_digit_pointer = FREQ_VALUE_DIGIT_NUM-1;
+        if(application_states.speed_digit_pointer >= SPEED_VALUE_DIGIT_NUM) {
+          application_states.speed_digit_pointer = 0;
         }
 
         // setting the encoder to the value of the next digit
-        encoder2_count_set((int16_t)application_states.freq_value_digits[application_states.freq_value_digit_pointer]);
+        inputs.encoder2_value.current_val = (int16_t)application_states.speed_digits[application_states.speed_digit_pointer];
+        encoder2_count_set(inputs.encoder2_value.current_val);
       }
 
       // encoder1 value
-      if(application_states.step_value_digits[application_states.step_value_digit_pointer] != (uint8_t)inputs.encoder1_value.current_val) {
+      if(application_states.angle_digits[application_states.angle_digit_pointer] != (uint8_t)inputs.encoder1_value.current_val) {
 
         // constraining encoder value to single digit
         if (inputs.encoder1_value.current_val > 9) {
@@ -163,17 +172,20 @@ void application_step_control_mode(void) {
         }
 
         // updating the digit array
-        application_states.step_value_digits[application_states.step_value_digit_pointer] = (uint8_t)inputs.encoder1_value.current_val;
+        application_states.angle_digits[application_states.angle_digit_pointer] = (uint8_t)inputs.encoder1_value.current_val;
+
+        // updating the actual value
+        application_states.angle_value = set_uin32_digit(application_states.angle_value, application_states.angle_digit_pointer, application_states.angle_digits[application_states.angle_digit_pointer]);
 
         // updating the stepper_movement
-        stepper_set_steps(&stepper_movement, digit_array_to_uint32(application_states.step_value_digits, STEP_VALUE_DIGIT_NUM));
+        stepper_set_angle_value(&stepper_movement, application_states.angle_value);
         
-        // updating display with step values
-        display_update_stepper_step(application_states.step_value_digit_pointer, stepper_movement.steps);
+        // updating display
+        display_update_stepper_angle(application_states.angle_digit_pointer, application_states.angle_value);
       }
       
       // encoder2 value
-      if(application_states.freq_value_digits[application_states.freq_value_digit_pointer] != (uint8_t)inputs.encoder2_value.current_val) {
+      if(application_states.speed_digits[application_states.speed_digit_pointer] != (uint8_t)inputs.encoder2_value.current_val) {
 
         // constraining encoder value to single digit
         if (inputs.encoder2_value.current_val > 9) {
@@ -186,38 +198,52 @@ void application_step_control_mode(void) {
         }
 
         // updating the digit array
-        application_states.freq_value_digits[application_states.freq_value_digit_pointer] = (uint8_t)inputs.encoder2_value.current_val;
+        application_states.speed_digits[application_states.speed_digit_pointer] = (uint8_t)inputs.encoder2_value.current_val;
 
-        stepper_set_freq(&stepper_movement, digit_array_to_uint32(application_states.freq_value_digits, FREQ_VALUE_DIGIT_NUM));
+        // updating the actual value
+        application_states.speed_value = set_uin32_digit(application_states.speed_value, application_states.speed_digit_pointer, application_states.speed_digits[application_states.speed_digit_pointer]);
 
         // constraining the current encoder value to not exceed user frequency range
-        /* uint32_t test_val; */
-        /* value_state_t value_state = digit_array_user_freq_to_uint32(&test_val, application_states.freq_value_digits); */
-        /* if (value_state == VALUE_OUT_OF_MIN_RANGE) { */
-        /*   //TODO: I don't know if this will cover all cases */
-        /*   encoder2_count_set(1); */
-        /*   inputs.encoder2_value.current_val = 1; */
-        
+        if (application_states.speed_value < USER_MIN_FREQ) {
+          // setting pointer to first digit and making it 1
+          application_states.speed_digit_pointer = 0;
+          set_digit_array(application_states.speed_digits, USER_MIN_FREQ);
+          application_states.speed_value = USER_MIN_FREQ;
+          encoder2_count_set(USER_MIN_FREQ);
+          inputs.encoder2_value.current_val = USER_MIN_FREQ;
 
-        /* } else if (value_state == VALUE_OUT_OF_MAX_RANGE){ */
-        /*   //TODO: I don't know if this will cover all cases */
-        /*   encoder2_count_set(1); //TODO: I don't know if this will cover all cases */
-        /*   inputs.encoder2_value.current_val = 1; */
+          // setting frequency to minimum value
+          stepper_movement.frequency = STEPPER_MIN_FREQ;
 
-        /* } */
+        } else if (application_states.speed_value > USER_MAX_FREQ){
+          // setting pointer to last digit and making it 1 as in 100
+          application_states.speed_digit_pointer = SPEED_VALUE_DIGIT_NUM-1;
+          set_digit_array(application_states.speed_digits, USER_MAX_FREQ);
+          application_states.speed_value = USER_MAX_FREQ;
+          encoder2_count_set(1); //TODO: it's 1 because 1 in 100, should automate it some how
+          inputs.encoder2_value.current_val = 1;
 
-        // updating display with step values
-        display_update_stepper_frequency(application_states.freq_value_digit_pointer, stepper_movement.frequency);
+          // setting frequency to max value
+          stepper_movement.frequency = STEPPER_MAX_FREQ;
+
+        } else {
+          stepper_set_speed(&stepper_movement, application_states.speed_value);
+        }
+
+        // updating display
+        display_update_stepper_speed(application_states.speed_digit_pointer, application_states.speed_value);
       }
       break;
 
     case MOVEMENT_STATE_RUN:
       /* printf("Steps Moved: %lu \r", get_step_counter()); */
-      display_update_steps_moved(get_step_counter());
+      display_update_angles_moved(&stepper_movement);
 
       if(inputs.stop_button.current_val == BUTTON_PRESSED) {
         stepper_stop();
-        stepper_set_steps(&stepper_movement, digit_array_to_uint32(application_states.step_value_digits, STEP_VALUE_DIGIT_NUM));
+
+        // resetting step value in case pause changed it
+        stepper_set_angle_value(&stepper_movement, application_states.angle_value);
 
         application_states.movement_state = MOVEMENT_STATE_IDLE;
         display_step_control_reset(&stepper_movement);
@@ -227,7 +253,8 @@ void application_step_control_mode(void) {
       }
 
       if(!get_stepper_state()) {
-        stepper_set_steps(&stepper_movement, digit_array_to_uint32(application_states.step_value_digits, STEP_VALUE_DIGIT_NUM));
+        // resetting step value in case pause changed it
+        stepper_set_angle_value(&stepper_movement, application_states.angle_value);
 
         application_states.movement_state = MOVEMENT_STATE_IDLE;
         display_step_control_reset(&stepper_movement);
@@ -238,7 +265,9 @@ void application_step_control_mode(void) {
 
       if(inputs.run_pause_button.current_val == BUTTON_PRESSED) {
         stepper_stop();
-        stepper_set_steps(&stepper_movement, get_step_counter());
+
+        // setting step value to the remaining steps
+        stepper_movement.steps = get_step_counter();
 
         application_states.movement_state = MOVEMENT_STATE_PAUSE;
         display_update_application_state(application_states.movement_state);
@@ -253,7 +282,9 @@ void application_step_control_mode(void) {
 
       if(inputs.stop_button.current_val == BUTTON_PRESSED) {
         stepper_stop();
-        stepper_set_steps(&stepper_movement, digit_array_to_uint32(application_states.step_value_digits, STEP_VALUE_DIGIT_NUM));
+
+        // resetting step value in case pause changed it
+        stepper_set_angle_value(&stepper_movement, application_states.angle_value);
 
         application_states.movement_state = MOVEMENT_STATE_IDLE;
         display_step_control_reset(&stepper_movement);
@@ -300,13 +331,15 @@ void application_encoder_control_mode (void) {
   if(inputs.control_mode_switch.current_val != application_states.control_mode) {
     application_states.control_mode = STEP_CONTROL;
 
-    inputs.encoder1_value.current_val = get_most_significant_digit(stepper_movement.steps);
-    encoder1_count_set(get_most_significant_digit(stepper_movement.steps));
+    inputs.encoder1_value.current_val = (int16_t) application_states.angle_digits[application_states.angle_digit_pointer];
+    encoder1_count_set(inputs.encoder1_value.current_val);
 
-    inputs.encoder2_value.current_val = get_most_significant_digit(stepper_movement.frequency);
-    encoder2_count_set(get_most_significant_digit(stepper_movement.frequency));
+    inputs.encoder2_value.current_val = (int16_t)application_states.speed_digits[application_states.speed_digit_pointer];
+    encoder2_count_set(inputs.encoder2_value.current_val);
 
-    stepper_set_freq(&stepper_movement, application_states.prev_step_control_freq_value);
+    // re-calculate steps in case angle_to_steps value is changed
+    stepper_set_angle_value(&stepper_movement, application_states.angle_value);
+    stepper_set_speed(&stepper_movement, application_states.speed_value);
     display_step_control_reset(&stepper_movement);
     return;
   }
@@ -324,11 +357,11 @@ void application_encoder_control_mode (void) {
     application_states.encoder_control_value -= inputs.encoder1_value.current_val;
     if(application_states.encoder_control_value < 0) {
       stepper_set_dir(&stepper_movement, STEPPER_CLOCKWISE_DIR);
-      stepper_set_steps(&stepper_movement, (uint32_t)(-50*application_states.encoder_control_value));
+      stepper_movement.steps = (uint32_t)(-50*application_states.encoder_control_value);
 
     } else {
       stepper_set_dir(&stepper_movement, STEPPER_ANTICLOCKWISE_DIR);
-      stepper_set_steps(&stepper_movement, (uint32_t)(50*application_states.encoder_control_value));
+      stepper_movement.steps = (uint32_t)(50*application_states.encoder_control_value);
 
     }
 
@@ -338,6 +371,54 @@ void application_encoder_control_mode (void) {
     stepper_move(&stepper_movement);
     while(get_stepper_state());
 
+  }
+
+  // Encoder2 button
+  if(inputs.encoder2_button.current_val == BUTTON_PRESSED) {
+    // Incrementing the freq digit pointer
+    application_states.deg_step_pointer++;
+
+    // constraining it to the number of digits available
+    if(application_states.deg_step_pointer >= DEG_STEP_DIGIT_NUM) {
+      application_states.deg_step_pointer = 0;
+    }
+
+    // setting the encoder to the value of the next digit
+    inputs.encoder2_value.current_val = (int16_t)application_states.deg_step_digits[application_states.deg_step_pointer];
+    encoder2_count_set(inputs.encoder2_value.current_val);
+  }
+
+  // Encoder2 value
+  if(application_states.deg_step_digits[application_states.deg_step_pointer] != (uint8_t)inputs.encoder2_value.current_val) {
+
+    // constraining encoder value to single digit
+    if (inputs.encoder2_value.current_val > 9) {
+      encoder2_count_reset();
+      inputs.encoder2_value.current_val = 0;
+
+    } else if (inputs.encoder2_value.current_val < 0) {
+      encoder2_count_set(9);
+      inputs.encoder2_value.current_val = 9;
+    }
+
+
+    // updating the digit array
+    application_states.deg_step_digits[application_states.deg_step_pointer] = (uint8_t)inputs.encoder2_value.current_val;
+
+    // updating the actual value
+    application_states.deg_step_value = set_float_digit(application_states.deg_step_value, application_states.deg_step_pointer, application_states.deg_step_digits[application_states.deg_step_pointer]);
+
+    // Contraining range
+    if (application_states.deg_step_value <= 0) {
+      // this will cause divide by 0 error when steps_to_angle()
+      //TODO:
+    }
+
+    // updating stepper movement
+    stepper_movement.angle_to_steps = application_states.deg_step_value;
+
+    // updating display
+    display_update_angle_to_steps_value(stepper_movement.angle_to_steps);
   }
 
 }
