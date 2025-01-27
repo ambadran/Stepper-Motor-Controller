@@ -1935,207 +1935,6 @@
 				)
 			)
 		)
-		(symbol "LM338T:LM338T"
-			(pin_names
-				(offset 1.016)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "U"
-				(at -7.366 5.588 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left bottom)
-				)
-			)
-			(property "Value" "LM338T"
-				(at 0.254 5.842 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left bottom)
-				)
-			)
-			(property "Footprint" "LM338T:TO254P1054X470X1955-3"
-				(at -1.016 9.398 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "MF" "Texas Instruments"
-				(at -1.016 9.398 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Description_1" "\n                        \n                            5-A, 40-V, low-IQ, adjustable linear voltage regulator 3-TO-220 0 to 125\n                        \n"
-				(at -1.016 9.398 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Package" "TO-220-3 Texas Instruments"
-				(at -1.016 9.398 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Price" "None"
-				(at -1.016 9.398 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "SnapEDA_Link" "https://www.snapeda.com/parts/LM338T/Texas+Instruments/view-part/?ref=snap"
-				(at -1.016 9.398 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "MP" "LM338T"
-				(at -1.016 9.398 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Availability" "In Stock"
-				(at -1.016 9.398 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(property "Check_prices" "https://www.snapeda.com/parts/LM338T/Texas+Instruments/view-part/?ref=eda"
-				(at -1.016 9.398 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify bottom)
-					(hide yes)
-				)
-			)
-			(symbol "LM338T_0_0"
-				(rectangle
-					(start -7.62 5.08)
-					(end 7.62 -5.08)
-					(stroke
-						(width 0.41)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(pin input line
-					(at 0 -10.16 90)
-					(length 5.08)
-					(name "ADJ"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 12.7 1.27 180)
-					(length 5.08)
-					(name "VOUT"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -12.7 1.27 0)
-					(length 5.08)
-					(name "VIN"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-			)
-		)
 		(symbol "Mechanical:MountingHole"
 			(pin_names
 				(offset 1.016)
@@ -2214,6 +2013,147 @@
 					)
 					(fill
 						(type none)
+					)
+				)
+			)
+		)
+		(symbol "Regulator_Linear:L7805"
+			(pin_names
+				(offset 0.254)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "U"
+				(at -3.81 3.175 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "L7805"
+				(at 0 3.175 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at 0.635 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+						(italic yes)
+					)
+					(justify left)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "http://www.st.com/content/ccc/resource/technical/document/datasheet/41/4f/b3/b0/12/d4/47/88/CD00000444.pdf/files/CD00000444.pdf/jcr:content/translations/en.CD00000444.pdf"
+				(at 0 -1.27 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Positive 1.5A 35V Linear Regulator, Fixed Output 5V, TO-220/TO-263/TO-252"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "Voltage Regulator 1.5A Positive"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "TO?252* TO?263* TO?220*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "L7805_0_1"
+				(rectangle
+					(start -5.08 1.905)
+					(end 5.08 -5.08)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "L7805_1_1"
+				(pin power_in line
+					(at -7.62 0 0)
+					(length 2.54)
+					(name "IN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 -7.62 90)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_out line
+					(at 7.62 0 180)
+					(length 2.54)
+					(name "OUT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
 					)
 				)
 			)
@@ -3763,28 +3703,6 @@
 		(color 0 0 0 0)
 		(uuid "913bd8f0-a191-4b9e-a41a-73574e0b2ea8")
 	)
-	(junction
-		(at 147.32 85.09)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "a8879a5b-69f1-4973-a08e-02a55a0aab70")
-	)
-	(junction
-		(at 147.32 73.66)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "fbbfaf43-9a9f-4d96-9db1-39bc74473748")
-	)
-	(wire
-		(pts
-			(xy 147.32 73.66) (xy 147.32 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0abbb311-7a78-45b2-9d9e-b68908010ea7")
-	)
 	(wire
 		(pts
 			(xy 151.13 133.35) (xy 151.13 134.62)
@@ -3907,16 +3825,6 @@
 	)
 	(wire
 		(pts
-			(xy 134.62 85.09) (xy 147.32 85.09)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7bd74f7c-a4ff-4fc5-bedf-4bed7f671856")
-	)
-	(wire
-		(pts
 			(xy 199.39 54.61) (xy 201.93 54.61)
 		)
 		(stroke
@@ -3957,16 +3865,6 @@
 	)
 	(wire
 		(pts
-			(xy 148.59 73.66) (xy 147.32 73.66)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b75bb48b-93fc-41fc-9d1c-b81f8c9ff73b")
-	)
-	(wire
-		(pts
 			(xy 152.4 135.89) (xy 152.4 128.27)
 		)
 		(stroke
@@ -3987,16 +3885,6 @@
 	)
 	(wire
 		(pts
-			(xy 147.32 85.09) (xy 147.32 86.36)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f0244032-27ac-4e00-af83-9e3b75641ab1")
-	)
-	(wire
-		(pts
 			(xy 184.15 139.7) (xy 177.8 139.7)
 		)
 		(stroke
@@ -4004,16 +3892,6 @@
 			(type default)
 		)
 		(uuid "f9bf2f01-eb64-4d4f-a156-a52754ca2141")
-	)
-	(wire
-		(pts
-			(xy 147.32 85.09) (xy 147.32 83.82)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fce402d8-b0c3-462e-a2b7-c1b4485bcfb9")
 	)
 	(label "PSB"
 		(at 180.34 142.24 0)
@@ -6279,8 +6157,8 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 133.35 93.98 270)
-		(mirror x)
+		(at 142.24 86.36 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6288,7 +6166,7 @@
 		(dnp no)
 		(uuid "4039698d-f766-4373-8baf-1a3faea4f307")
 		(property "Reference" "R3"
-			(at 133.35 93.98 90)
+			(at 142.24 86.36 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6296,7 +6174,7 @@
 			)
 		)
 		(property "Value" "Bridge"
-			(at 133.35 96.266 90)
+			(at 144.526 86.36 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6304,7 +6182,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P5.08mm_Vertical"
-			(at 133.35 95.758 90)
+			(at 144.018 86.36 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6313,7 +6191,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 133.35 93.98 0)
+			(at 142.24 86.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6322,7 +6200,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 133.35 93.98 0)
+			(at 142.24 86.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6753,76 +6631,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
-		(at 147.32 90.17 0)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "63514a19-5822-4204-8e9d-8125abb21473")
-		(property "Reference" "R5"
-			(at 152.4 90.17 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "470"
-			(at 149.86 90.17 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
-			(at 145.542 90.17 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 147.32 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 147.32 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "724e1b34-31ba-4cb5-88f7-643c96a7a02a")
-		)
-		(pin "1"
-			(uuid "3954f10b-809c-4647-915d-4da5cb6dd7ce")
-		)
-		(instances
-			(project "final-design"
-				(path "/90fcdb5f-e6ac-4407-b69d-2c32848d2af5"
-					(reference "R5")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+5V")
-		(at 137.16 93.98 270)
+		(at 142.24 82.55 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6830,7 +6640,7 @@
 		(dnp no)
 		(uuid "6e79312a-87d6-4563-b1be-865fb31a7420")
 		(property "Reference" "#PWR025"
-			(at 133.35 93.98 0)
+			(at 142.24 86.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6839,7 +6649,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 136.652 91.694 90)
+			(at 139.954 83.058 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6848,7 +6658,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 137.16 93.98 0)
+			(at 142.24 82.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6857,7 +6667,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 137.16 93.98 0)
+			(at 142.24 82.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6866,7 +6676,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 137.16 93.98 0)
+			(at 142.24 82.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7330,7 +7140,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 148.59 73.66 270)
+		(at 137.16 73.66 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7339,7 +7149,7 @@
 		(fields_autoplaced yes)
 		(uuid "80d8feb7-dbd3-4edf-8c19-f908a2f5cfd8")
 		(property "Reference" "#PWR027"
-			(at 144.78 73.66 0)
+			(at 133.35 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7348,7 +7158,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 152.4 73.6599 90)
+			(at 140.97 73.6599 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7357,7 +7167,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 148.59 73.66 0)
+			(at 137.16 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7366,7 +7176,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 148.59 73.66 0)
+			(at 137.16 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7375,7 +7185,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 148.59 73.66 0)
+			(at 137.16 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7597,7 +7407,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 118.11 90.17 0)
+		(at 114.3 90.17 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -7606,7 +7416,7 @@
 		(dnp no)
 		(uuid "9606d8ed-3858-45e9-ae10-d8561eef4dfa")
 		(property "Reference" "#PWR015"
-			(at 118.11 96.52 0)
+			(at 114.3 96.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7615,7 +7425,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 117.602 93.98 0)
+			(at 113.792 93.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7623,7 +7433,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 118.11 90.17 0)
+			(at 114.3 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7632,7 +7442,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 118.11 90.17 0)
+			(at 114.3 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7641,7 +7451,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 118.11 90.17 0)
+			(at 114.3 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7663,7 +7473,7 @@
 	)
 	(symbol
 		(lib_id "power:+5C")
-		(at 129.54 93.98 90)
+		(at 142.24 90.17 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7671,7 +7481,7 @@
 		(dnp no)
 		(uuid "98ef2465-7d94-4a6c-8696-c986a5b43182")
 		(property "Reference" "#PWR019"
-			(at 133.35 93.98 0)
+			(at 142.24 86.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7680,7 +7490,7 @@
 			)
 		)
 		(property "Value" "+5C"
-			(at 129.54 91.694 90)
+			(at 139.954 90.17 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7689,7 +7499,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 129.54 93.98 0)
+			(at 142.24 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7698,7 +7508,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 129.54 93.98 0)
+			(at 142.24 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7707,7 +7517,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5C\""
-			(at 129.54 93.98 0)
+			(at 142.24 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8088,7 +7898,7 @@
 	)
 	(symbol
 		(lib_id "power:+24V")
-		(at 118.11 82.55 0)
+		(at 114.3 82.55 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -8097,7 +7907,7 @@
 		(dnp no)
 		(uuid "c015d7e5-ee7a-40ae-ac9f-76a84b312697")
 		(property "Reference" "#PWR014"
-			(at 118.11 86.36 0)
+			(at 114.3 86.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8106,7 +7916,7 @@
 			)
 		)
 		(property "Value" "+24V"
-			(at 117.856 78.486 0)
+			(at 114.046 78.486 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8114,7 +7924,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 118.11 82.55 0)
+			(at 114.3 82.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8123,7 +7933,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 118.11 82.55 0)
+			(at 114.3 82.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8132,7 +7942,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+24V\""
-			(at 118.11 82.55 0)
+			(at 114.3 82.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8220,52 +8030,44 @@
 		)
 	)
 	(symbol
-		(lib_id "LM338T:LM338T")
-		(at 134.62 74.93 0)
+		(lib_id "Regulator_Linear:L7805")
+		(at 129.54 73.66 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "c3c5964c-ecac-4919-9093-51a693ff8e9e")
+		(uuid "cc1a8c04-ff45-49a3-8007-a965f21e2bb8")
 		(property "Reference" "U1"
-			(at 134.62 64.77 0)
+			(at 129.54 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "LM338T"
-			(at 134.62 67.31 0)
+		(property "Value" "L7805"
+			(at 129.54 69.85 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "LM338T:TO254P1054X470X1955-3"
-			(at 133.604 65.532 0)
+		(property "Footprint" "Package_TO_SOT_THT:TO-220-3_Vertical"
+			(at 130.175 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
+					(italic yes)
 				)
-				(justify bottom)
+				(justify left)
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
-			(at 134.62 74.93 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 134.62 74.93 0)
+		(property "Datasheet" "http://www.st.com/content/ccc/resource/technical/document/datasheet/41/4f/b3/b0/12/d4/47/88/CD00000444.pdf/files/CD00000444.pdf/jcr:content/translations/en.CD00000444.pdf"
+			(at 129.54 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8273,97 +8075,26 @@
 				(hide yes)
 			)
 		)
-		(property "MF" "Texas Instruments"
-			(at 133.604 65.532 0)
+		(property "Description" "Positive 1.5A 35V Linear Regulator, Fixed Output 5V, TO-220/TO-263/TO-252"
+			(at 129.54 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify bottom)
 				(hide yes)
 			)
-		)
-		(property "Description_1" "\n                        \n                            5-A, 40-V, low-IQ, adjustable linear voltage regulator 3-TO-220 0 to 125\n                        \n"
-			(at 133.604 65.532 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Package" "TO-220-3 Texas Instruments"
-			(at 133.604 65.532 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Price" "None"
-			(at 133.604 65.532 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/LM338T/Texas+Instruments/view-part/?ref=snap"
-			(at 133.604 65.532 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MP" "LM338T"
-			(at 133.604 65.532 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Availability" "In Stock"
-			(at 133.604 65.532 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Check_prices" "https://www.snapeda.com/parts/LM338T/Texas+Instruments/view-part/?ref=eda"
-			(at 133.604 65.532 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "485cc55f-3c78-47cb-a29c-871ead13f751")
-		)
-		(pin "3"
-			(uuid "bb495f51-0959-441e-9318-614c06eb699b")
 		)
 		(pin "1"
-			(uuid "3b0635d6-4056-4931-9f4c-bf5ea383e727")
+			(uuid "03871a96-6771-4516-ada9-5ecdfd904c96")
+		)
+		(pin "3"
+			(uuid "d5fa7910-d028-4f87-be64-0705ab65be21")
+		)
+		(pin "2"
+			(uuid "07c66483-24c3-408d-8fba-f094dfc8dcd3")
 		)
 		(instances
-			(project "final-design"
+			(project ""
 				(path "/90fcdb5f-e6ac-4407-b69d-2c32848d2af5"
 					(reference "U1")
 					(unit 1)
@@ -8564,74 +8295,6 @@
 			(project "final-design"
 				(path "/90fcdb5f-e6ac-4407-b69d-2c32848d2af5"
 					(reference "#PWR06")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 147.32 80.01 0)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "dc466f10-4ed3-4df1-a567-5855e0e3480d")
-		(property "Reference" "R4"
-			(at 152.4 80.01 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "150"
-			(at 149.86 80.01 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
-			(at 145.542 80.01 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 147.32 80.01 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 147.32 80.01 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "2017a51e-dd08-44aa-9f7f-5c7078108747")
-		)
-		(pin "1"
-			(uuid "b6a00f7f-0d42-499a-840c-005d22acc399")
-		)
-		(instances
-			(project "final-design"
-				(path "/90fcdb5f-e6ac-4407-b69d-2c32848d2af5"
-					(reference "R4")
 					(unit 1)
 				)
 			)
@@ -9316,7 +8979,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 147.32 93.98 0)
+		(at 129.54 81.28 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9325,7 +8988,7 @@
 		(fields_autoplaced yes)
 		(uuid "fa3c1fa0-59cf-4cda-880b-42f0ff7bdc4e")
 		(property "Reference" "#PWR026"
-			(at 147.32 100.33 0)
+			(at 129.54 87.63 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9334,7 +8997,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 147.32 99.06 0)
+			(at 129.54 86.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9342,7 +9005,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 147.32 93.98 0)
+			(at 129.54 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9351,7 +9014,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 147.32 93.98 0)
+			(at 129.54 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9360,7 +9023,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 147.32 93.98 0)
+			(at 129.54 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9517,7 +9180,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Polarized")
-		(at 118.11 86.36 0)
+		(at 114.3 86.36 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9526,7 +9189,7 @@
 		(fields_autoplaced yes)
 		(uuid "fcb9128a-e6fc-490b-991a-2ac35a22ace4")
 		(property "Reference" "C2"
-			(at 121.92 84.2009 0)
+			(at 118.11 84.2009 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9535,7 +9198,7 @@
 			)
 		)
 		(property "Value" "10uf"
-			(at 121.92 86.7409 0)
+			(at 118.11 86.7409 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9544,7 +9207,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_THT:CP_Radial_D5.0mm_P2.50mm"
-			(at 119.0752 90.17 0)
+			(at 115.2652 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9553,7 +9216,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 118.11 86.36 0)
+			(at 114.3 86.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9562,7 +9225,7 @@
 			)
 		)
 		(property "Description" "Polarized capacitor"
-			(at 118.11 86.36 0)
+			(at 114.3 86.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
